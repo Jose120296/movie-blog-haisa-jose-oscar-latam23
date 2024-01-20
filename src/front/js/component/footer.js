@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Modal from 'bootstrap/js/dist/modal'
+const modal = new Modal(document.getElementById('myModal'))
 
 export const Footer = () => (
 <footer class="bg-dark text-white py-4">
