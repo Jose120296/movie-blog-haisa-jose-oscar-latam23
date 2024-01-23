@@ -99,6 +99,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				catch(error){
 					console.error("Thera was an error")
 				}
+			},
+			logout: () => {
+				sessionStorage.removeItem("token");
+				console.log("login out");
+				setStore({token: null})
 			}
 		}
 	};
