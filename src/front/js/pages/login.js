@@ -14,17 +14,28 @@ export const Login = () => {
     const handleClick = () => {
         actions.login (email, password);
     }
+    const handleSignupClick = () => {
+        navigate('/signup');
+      };
     
+    if (store.token && store.token !== '' && store.token !== undefined) {
+        navigate('/');
+    }
+
     return (
         <div className="text-center mt-5">
             <h1> Please Login</h1>
-            <div>
-                <input type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button onClick={handleClick}>Login</button>
-                {/* <p className="mt-3">Don't have an account? </p>
-                <button className="btn btn-primary" onClick={handleSignupClick}>Sign up</button> */}
-            </div>
+            {store.token && store.token !== '' && store.token !== undefined ? (
+                <p>You are logged in with this token: {store.token}</p>
+            ) : (
+                <div>
+                    <input type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <button onClick={handleClick}>Login</button>
+                    <p className="mt-3">Don't have an account? </p>
+                    <button className="btn btn-primary" onClick={handleSignupClick}>Sign up</button> 
+                </div>
+            )}
         </div>
     )
 };

@@ -1,6 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			API_URL: process.env.BACKEND_URL,
+			token: null,
 			message: null,
 			demo: [
 				{
@@ -47,7 +49,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
+			signup: async (email, password) => {
+				const store = getStore()
+				const infoNewUser = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						"email": email,
+						"password": password
+					})
+				};
+				try {
+					const resp = await fetch (store.API_URL + '/api/user', infoNewUser)
+					if(resp.status != 201) {
+						alert("There has been some error");
+						return false		
+					}
+				}
+				catch(error){
+					console.error("Error fatal")
+				}
+			},
 			login: async (email, password) => {
+				const store = getStore()
 				const opts = {
 					method: "POST",
 					headers: {
@@ -57,6 +83,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"email": email,
 						"password": password
 					})
+				}
+				try{
+					const resp = await fetch (store.API_URL + '/api/token', opts)
+					if(resp.status !== 200) {
+						alert("There has been some error");
+						return false
+					}
+					const data = await resp.json();
+					console.log("this came from the backend", data);
+					sessionStorage.setItem("token", data.access_token)
+					setStore ({token: data.access_token})
+					return true;
+				}
+				catch(error){
+					console.error("Thera was an error")
 				}
 			}
 		}
