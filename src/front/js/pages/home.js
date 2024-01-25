@@ -23,4 +23,4 @@ export const Home = () => {
 			</p>
 		</div>
 	);
-};clea
+};
