@@ -15,15 +15,15 @@ export const Navbar = () => {
     <nav className="navbar navbar-light bg-dark">
       <div className="container">
         <Link to="/">
-          <span className="navbar-brand mb-2 h1 bg-primary text-white">React Boilerplate</span>
+          <span className="navbar-brand mb-2 h1 bg-primary text-white">CineFilms</span>
         </Link>
-        <div className="ml-auto">
+        <div className="ml-auto">  
           {!store.token ? (
             <Link to="/login">
-              <button className="btn btn-primary">Please Login</button>
+              <button className="btn btn-primary">Join Now</button>
             </Link>
           ) : (
-            <button onClick={handleSignOut} className="btn btn-primary">Sign Out</button>
+            <button onClick={handleSignOut} className="btn btn-primary">Log in</button>
           )}
         </div>
       </div>
