@@ -10,8 +10,9 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    actions.login(email, password);
+  const handleClick = async () => {
+    await actions.login(email, password);
+    navigate("/feed"); // Redirigir a la vista del feed después de iniciar sesión
   };
 
   const handleSignupClick = () => {
@@ -20,11 +21,10 @@ export const Login = () => {
 
   useEffect(() => {
     actions.getMessage();
+    if (store.token && store.token !== "" && store.token !== undefined) {
+      navigate("/feed"); // Redirigir a la vista del feed si ya está autenticado
+    }
   }, []);
-
-  if (store.token && store.token !== "" && store.token !== undefined) {
-    navigate("/");
-  }
 
   return (
     <div className="home-container">
