@@ -14,8 +14,8 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-light bg-dark">
       <div className="container">
-        <Link to="/">
-          <span className="navbar-brand mb-2 h1 bg-primary text-white">CineFilms</span>
+        <Link to="/" className="navbar-brand mb-2 h1 bg-primary text-white">
+          Cine Verse
         </Link>
         <div className="ml-auto">  
           {!store.token ? (
