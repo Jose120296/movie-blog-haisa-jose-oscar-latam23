@@ -1,42 +1,40 @@
-import React, { useContext, useEffect } from "react";
-import { Context } from "../store/appContext";
+import React from "react";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
-	useEffect(()=> {
-		actions.getMessage();
-	}, [])
-	
   return (
-    <div className="container">
-      <div className="row justify-content-center mt-5">
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-body text-center">
-              <h1>Log In</h1>
-              <div className="mt-4">
-                {!store.token ? (
-                  <Link to="/login">
-                    <button className="btn btn-primary">Please Login</button>
-                  </Link>
-                ) : (
-                  <button onClick={() => actions.logout()} className="btn btn-primary">
-                    Sign Out
-                  </button>
-                )}
-              </div>
-              <h3 className="mt-4">or</h3>
-              <Link to="/signup">
-                <button className="btn btn-primary">Sign Up</button>
-              </Link>
+    <div className="home-container">
+      <header className="bg-dark text-light text-center py-3">
+        <h1>Cine Verse</h1>
+      </header>
+      <main>
+        <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img className="d-block w-100" src="#" alt="First slide" />
+            </div>
+            <div className="carousel-item">
+              <img className="d-block w-100" src="#" alt="Second slide" />
+            </div>
+            <div className="carousel-item">
+              <img className="d-block w-100" src="#" alt="Third slide" />
             </div>
           </div>
+          <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="sr-only">Previous</span>
+          </a>
+          <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="sr-only">Next</span>
+          </a>
         </div>
-      </div>
+        <h1 class="texto-blanco">Lights Out</h1>
+        <p class="texto-blanco">the 35min | PG</p>
+        <p class="texto-blanco">Released Aug 12, 2019</p>
+        </main>
     </div>
   );
 };

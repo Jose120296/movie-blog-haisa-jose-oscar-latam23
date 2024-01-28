@@ -17,3 +17,12 @@ class User(db.Model):
             "email": self.email,
             # do not serialize the password, its a security breach
         }
+    
+class Movies(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
+    genre = db.Column(db.String(255), nullable=False)
+    length = db.Column(db.String(255), nullable=False)
+
+    def __repr__(self):
+        return f'<Movie {self.title}>'
