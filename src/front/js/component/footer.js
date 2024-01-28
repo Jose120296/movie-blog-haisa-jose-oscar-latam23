@@ -5,8 +5,8 @@ export const Footer = () => (
     <div className="container">
       <div className="row">
         <div className="col-md-3">
-          <h5>Pendiente Nombre</h5>
-          <p>Pendiente Descripción</p>
+          <h5>Cine Verse</h5>
+          <p>¿Te gustan las películas? ¿Quieres compartir tu opinión con otros cinéfilos? Entonces, esta es la red social que estabas buscando.</p>
           <p>Expirience Movie</p>
           <button className="btn btn-primary">SEE ALL OFFERS AND PROMOTIONS</button>
         </div>

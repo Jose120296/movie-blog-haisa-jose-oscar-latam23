@@ -1,44 +1,20 @@
-import React, { useContext, useEffect } from "react";
-import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../../styles/home.css";
 
 export const Home = () => {
-  const { store, actions } = useContext(Context);
-
-  useEffect(() => {
-    actions.getMessage();
-  }, []);
-
   return (
-    <div className="home-container">
-      <div className="container">
-        <div className="row justify-content-center align-items-center h-100">
-          <div className="col-md-6">
-            <div className="card shadow">
-              <div className="card-body text-center">
-                <h1 className="mb-4">Log In</h1>
-                <div className="mt-4">
-                  {!store.token ? (
-                    <Link to="/login">
-                      <button className="btn btn-primary">Please Login</button>
-                    </Link>
-                  ) : (
-                    <button onClick={() => actions.logout()} className="btn btn-primary">
-                      Sign Out
-                    </button>
-                  )}
-                </div>
-                <h3 className="mt-4">or</h3>
-                <Link to="/signup">
-                  <button className="btn btn-primary">Sign Up</button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div>
+      <header className="bg-dark text-light text-center py-3">
+        <h1>Cine Verse</h1>
+      </header>
+      <main className="p-3">
+        <h1>Lights Out</h1>
+        <p>the 35min | PG</p>
+        <p>Released Aug 12, 2019</p>
+        <button className="btn btn-primary">GET TICKETS</button>
+        <p>1611-000</p>
+      </main>
     </div>
   );
 };
