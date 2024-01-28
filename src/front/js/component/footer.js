@@ -1,14 +1,13 @@
 import React from "react";
 
 export const Footer = () => (
-  <footer className="footer bg-dark text-white mt-5 py-4 fixed-bottom">
+  <footer className="footer bg-dark text-white mt-5 py-4">
     <div className="container">
       <div className="row">
         <div className="col-md-3">
           <h5>Cine Verse</h5>
           <p>¿Te gustan las películas? ¿Quieres compartir tu opinión con otros cinéfilos? Entonces, esta es la red social que estabas buscando.</p>
           <p>Expirience Movie</p>
-          <button className="btn btn-primary">SEE ALL OFFERS AND PROMOTIONS</button>
         </div>
         <div className="col-md-3">
           <h5>ABOUT US</h5>
@@ -33,9 +32,6 @@ export const Footer = () => (
           </ul>
         </div>
       </div>
-    </div>
-    <div className="text-center">
-      <button className="btn btn-primary d-block mx-auto">Check the Context in action</button>
     </div>
   </footer>
 );

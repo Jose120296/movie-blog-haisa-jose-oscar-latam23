@@ -15,7 +15,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			popularMovies: [],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -104,7 +105,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				sessionStorage.removeItem("token");
 				console.log("login out");
 				setStore({token: null})
-			}
+			},
+			setPopularMovies: (movies) => {
+				setStore({ popularMovies: movies });
+			},
 		}
 	};
 };

@@ -6,9 +6,6 @@ import "../../styles/home.css";
 export const Home = () => {
   return (
     <div className="home-container">
-      <header className="bg-dark text-light text-center py-3">
-        <h1>Cine Verse</h1>
-      </header>
       <main>
         <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
           <div className="carousel-inner">
