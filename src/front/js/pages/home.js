@@ -7,7 +7,8 @@ export const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetch('https://api.example.com/popularMovies')
+    const apiKey = "8625bab00ddcdc7ae2bb6b2892eae6e4";
+    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -28,7 +29,7 @@ export const Home = () => {
       <div className="carousel-inner">
         {movies.map((movie, index) => (
           <div key={movie.id} className={`carousel-item ${index === 0 ? "active" : ""}`}>
-            <img src={movie.posterUrl} alt={movie.title} />
+            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
           </div>
         ))}
       </div>
