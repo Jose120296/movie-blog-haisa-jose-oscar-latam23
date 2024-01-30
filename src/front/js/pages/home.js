@@ -1,47 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../../styles/home.css";
 
 export const Home = () => {
-  const [movies, setMovies] = useState([]);
+  const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    const apiKey = "8625bab00ddcdc7ae2bb6b2892eae6e4";
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => setMovies(data.results))
-      .catch(error => console.error('Error fetching popular movies:', error));
+    actions.getMessage();
   }, []);
 
   return (
-    <div className="carousel slide" data-ride="carousel">
-      <ol className="carousel-indicators">
-        {movies.map((movie, index) => (
-          <li key={movie.id} data-target="#carouselExampleIndicators" data-slide-to={index} className={index === 0 ? "active" : ""}></li>
-        ))}
-      </ol>
-      <div className="carousel-inner">
-        {movies.map((movie, index) => (
-          <div key={movie.id} className={`carousel-item ${index === 0 ? "active" : ""}`}>
-            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+    <div className="container h-100 d-flex justify-content-center align-items-center"> 
+      <div className="text-center">
+        <h1>CineVerse</h1> 
+        <div className="card shadow">
+          <div className="card-body">
+            <h1 className="mb-4">Log In</h1>
+            <div className="mt-4">
+              {!store.token ? (
+                <Link to="/login">
+                  <button className="btn btn-primary">Please Login</button>
+                </Link>
+              ) : (
+                <button onClick={() => actions.logout()} className="btn btn-primary">
+                  Sign Out
+                </button>
+              )}
+            </div>
+            <h3 className="mt-4">or</h3>
+            <Link to="/signup">
+              <button className="btn btn-primary">Sign Up</button>
+            </Link>
           </div>
-        ))}
+        </div>
       </div>
-      <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span className="sr-only">Previous</span>
-      </a>
-      <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        <span className="sr-only">Next</span>
-      </a>
     </div>
   );
 };
-
