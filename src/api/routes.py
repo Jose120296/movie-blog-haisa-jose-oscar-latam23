@@ -92,6 +92,7 @@ def create_movie():
     title = data.get("title")
     genre = data.get("genre")
     length = data.get("length")
+    poster = data.get("poster")
 
     if not title or not genre or not length:
         return jsonify({"message": "Missing required fields"}), 400
@@ -99,7 +100,8 @@ def create_movie():
     movie = Movies(
         title=title,
         genre=genre,
-        length=length
+        length=length,
+        poster= poster
     )
 
     try:
@@ -109,3 +111,20 @@ def create_movie():
         return jsonify({"message": "Failed to create movie"}), 500
 
     return jsonify({"id": movie.id}), 201
+
+@api.route('/movies', methods=['GET'])
+def get_movies():
+    movies = Movies.query.all()
+
+    result = []
+    for movie in movies:
+        movie_data = {
+            "id": movie.id,
+            "title": movie.title,
+            "genre": movie.genre,
+            "length": movie.length,
+            "poster": movie.poster
+        }
+        result.append(movie_data)
+
+    return jsonify(result), 200
