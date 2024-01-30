@@ -18,11 +18,11 @@ export const Home = () => {
           <div className="col-md-6">
             <div className="card shadow">
               <div className="card-body text-center">
-                <h1 className="mb-4">Log In</h1>
+                <h1 className="mb-4">CineVerse</h1>
                 <div className="mt-4">
                   {!store.token ? (
                     <Link to="/login">
-                      <button className="btn btn-primary">Please Login</button>
+                      <button className="btn btn-primary">Login</button>
                     </Link>
                   ) : (
                     <button onClick={() => actions.logout()} className="btn btn-primary">
