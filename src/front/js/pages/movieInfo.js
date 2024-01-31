@@ -36,29 +36,25 @@ export const MovieInfo = () => {
             <div className="col-md-8">
               <h2>{movieInfo.title}</h2>
               <p className="lead">{movieInfo.genre}</p>
-            </div>
-          </div>
-          <div className="mt-4">
-            <hr />
-            <p>
+              <p>
               <strong>Title:</strong> {movieInfo.title}
-            </p>
-            <p>
-              <strong>Genre:</strong> {movieInfo.genre}
-            </p>
-            <p>
-              <strong>Length:</strong> {movieInfo.length}
-            </p>
-            <p>
-              <strong>Release Date:</strong> {movieInfo.release_date}
-            </p>
-            <p>
-              <strong>Actors:</strong> {movieInfo.actors}
-            </p>
-            <p>
-              <strong>Description:</strong> {movieInfo.description}
-            </p>
-            {/* Agrega más detalles de la película según sea necesario */}
+              </p>
+              <p>
+                <strong>Genre:</strong> {movieInfo.genre}
+              </p>
+              <p>
+                <strong>Length:</strong> {movieInfo.length}
+              </p>
+              <p>
+                <strong>Release Date:</strong> {movieInfo.release_date}
+              </p>
+              <p>
+                <strong>Actors:</strong> {movieInfo.actors}
+              </p>
+              <p>
+                <strong>Description:</strong> {movieInfo.description}
+              </p>
+            </div>
           </div>
         </>
       ) : (
