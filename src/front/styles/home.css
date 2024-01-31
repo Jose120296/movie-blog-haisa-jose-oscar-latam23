@@ -57,3 +57,32 @@ body {
 .card-text {
   margin-bottom: 0.5rem;
 }
+
+/* MovieInfo.css */
+
+.movie-info-container {
+  padding: 20px;
+}
+
+.movie-poster {
+  border-radius: 8px;
+}
+
+.movie-details {
+  padding-left: 20px;
+}
+
+.movie-details h2 {
+  color: #333;
+}
+
+.movie-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.movie-details li {
+  margin-bottom: 10px;
+}
+
+/* Agrega más estilos según tus preferencias */
