@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 export const MovieInfo = () => {
   const { id } = useParams();
@@ -22,7 +24,7 @@ export const MovieInfo = () => {
   }, [id, store.API_URL]);
 
   return (
-    <div className="movie-info">
+    <div className="movie-info-container">
       {movieInfo ? (
         <>
           <div className="row">
@@ -30,30 +32,40 @@ export const MovieInfo = () => {
               <img
                 src={movieInfo.poster}
                 alt={movieInfo.title}
-                className="img-fluid"
+                className="movie-poster img-fluid"
               />
             </div>
             <div className="col-md-8">
-              <h2>{movieInfo.title}</h2>
-              <p className="lead">{movieInfo.genre}</p>
-              <p>
-              <strong>Title:</strong> {movieInfo.title}
-              </p>
-              <p>
-                <strong>Genre:</strong> {movieInfo.genre}
-              </p>
-              <p>
-                <strong>Length:</strong> {movieInfo.length}
-              </p>
-              <p>
-                <strong>Release Date:</strong> {movieInfo.release_date}
-              </p>
-              <p>
-                <strong>Actors:</strong> {movieInfo.actors}
-              </p>
-              <p>
-                <strong>Description:</strong> {movieInfo.description}
-              </p>
+              <div className="movie-details">
+                <div className="d-flex justify-content-between align-items-start mb-3">
+                  {/* Asegúrate de que el título no esté dentro del div d-flex */}
+                  <h2>{movieInfo.title}</h2>
+                  <Link to="/feed" className="btn btn-primary">
+                    🔙
+                  </Link>
+                </div>
+                <p className="lead">{movieInfo.genre}</p>
+                <ul>
+                  <li>
+                    <strong>Title:</strong> {movieInfo.title}
+                  </li>
+                  <li>
+                    <strong>Genre:</strong> {movieInfo.genre}
+                  </li>
+                  <li>
+                    <strong>Length:</strong> {movieInfo.length}
+                  </li>
+                  <li>
+                    <strong>Release Date:</strong> {movieInfo.release_date}
+                  </li>
+                  <li>
+                    <strong>Actors:</strong> {movieInfo.actors}
+                  </li>
+                  <li>
+                    <strong>Description:</strong> {movieInfo.description}
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </>
