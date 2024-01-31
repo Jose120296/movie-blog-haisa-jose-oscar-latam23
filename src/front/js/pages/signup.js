@@ -18,6 +18,7 @@ export const Signup = () => {
 
   const handleLoginClick = () => {
     navigate("/login");
+    
   };
 
   useEffect(() => {
@@ -310,10 +311,11 @@ return (
                     <option value="ZW">Zimbabue</option>
                  </select>
                </div>
-
+                <Link to="/login">
                 <button className="btn btn-danger btn-block mb-3" onClick={handleClick}>
                   Sign Up
                 </button>
+                </Link>
                 <p>Already have an account?</p>
                 <Link to="/login">
                   <button className="btn btn-danger btn-block" onClick={handleLoginClick}>
