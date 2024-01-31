@@ -303,7 +303,6 @@ return (
                     <option value="ZW">Zimbabue</option>
                  </select>
                </div>
-
                 <button className="btn btn-primary btn-block mb-3" onClick={handleClick}>
                   Sign Up
                 </button>
