@@ -61,6 +61,16 @@ return (
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
+                <div className="form-group">
+                  <input
+                    type="username"
+                    className="form-control"
+                    placeholder="@Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </div>
+              
                <div className="form-group">
                  <select
                    className="form-control"
@@ -303,6 +313,7 @@ return (
                     <option value="ZW">Zimbabue</option>
                  </select>
                </div>
+
                 <button className="btn btn-primary btn-block mb-3" onClick={handleClick}>
                   Sign Up
                 </button>
