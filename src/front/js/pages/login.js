@@ -56,12 +56,12 @@ export const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                       />
                     </div>
-                    <button className="btn btn-primary btn-block mb-3" onClick={handleClick}>
+                    <button className="btn btn-danger btn-block mb-3" onClick={handleClick}>
                       Login
                     </button>
                     <p>Don't have an account?</p>
                     <Link to="/signup">
-                      <button className="btn btn-primary btn-block" onClick={handleSignupClick}>
+                      <button className="btn btn-danger btn-block" onClick={handleSignupClick}>
                         Sign up
                       </button>
                     </Link>

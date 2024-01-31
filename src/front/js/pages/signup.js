@@ -314,12 +314,12 @@ return (
                  </select>
                </div>
 
-                <button className="btn btn-primary btn-block mb-3" onClick={handleClick}>
+                <button className="btn btn-danger btn-block mb-3" onClick={handleClick}>
                   Sign Up
                 </button>
                 <p>Already have an account?</p>
                 <Link to="/login">
-                  <button className="btn btn-primary btn-block" onClick={handleLoginClick}>
+                  <button className="btn btn-danger btn-block" onClick={handleLoginClick}>
                     Login
                   </button>
                 </Link>
