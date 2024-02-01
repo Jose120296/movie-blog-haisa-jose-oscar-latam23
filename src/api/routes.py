@@ -28,10 +28,11 @@ def handle_hello():
 def handle_register():
     data = request.json
     email = data.get("email")
+    user_name = data.get("user_name")
     password = data.get("password")
     print(password)
     data = request.json
-    if not data or "email" not in data or "password" not in data:
+    if not data or "email" not in data or "password" not in data or "user_name" not in data:
         return jsonify({
         "message": "Invalid request data"
     }), 400
@@ -47,6 +48,7 @@ def handle_register():
     print(hashed_password)
     new_user = User(
         email = email,
+        user_name = user_name,
         hashed_password = hashed_password,
         #salt = salt
     )
