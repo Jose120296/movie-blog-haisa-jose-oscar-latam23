@@ -54,7 +54,7 @@ export const MovieCard = () => {
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">{movie.genre}</p>
                 <p className="card-text">{movie.length}</p>
-                <Link to={`/movies/${movie.id}`} className="btn btn-primary">Ver detalles</Link>
+                <Link to={`/movies/${movie.id}`} className="btn btn-danger">Ver detalles</Link>
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@ export const MovieCard = () => {
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">{movie.genre}</p>
                 <p className="card-text">{movie.length}</p>
-                <Link to={`/movies/${movie.id}`} className="btn btn-primary">Ver detalles</Link>
+                <Link to={`/movies/${movie.id}`} className="btn btn-danger">Ver detalles</Link>
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@ export const MovieCard = () => {
 
       <br />
 
-      <h2 className="text-left danger">
+      <h2 className="text-left">
         <strong>Comedy</strong>
       </h2>
       <div className="row flex-nowrap overflow-auto">
@@ -106,7 +106,7 @@ export const MovieCard = () => {
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">{movie.genre}</p>
                 <p className="card-text">{movie.length}</p>
-                <Link to={`/movies/${movie.id}`} className="btn btn-primary">Ver detalles</Link>
+                <Link to={`/movies/${movie.id}`} className="btn btn-danger">Ver detalles</Link>
               </div>
             </div>
           </div>

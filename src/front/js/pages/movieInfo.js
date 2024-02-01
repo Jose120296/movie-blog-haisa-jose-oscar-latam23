@@ -40,7 +40,7 @@ export const MovieInfo = () => {
                 <div className="d-flex justify-content-between align-items-start mb-3">
                   {/* Asegúrate de que el título no esté dentro del div d-flex */}
                   <h2>{movieInfo.title}</h2>
-                  <Link to="/feed" className="btn btn-primary">
+                  <Link to="/feed" className="btn btn-danger">
                     🔙
                   </Link>
                 </div>
