@@ -12,6 +12,7 @@ export const Navbar = () => {
     navigate('/');
   };
 
+  
   return (
     <nav className="navbar navbar-light bg-dark">
       <div className="container">
@@ -21,12 +22,6 @@ export const Navbar = () => {
         <div className="ml-auto">
           {store.token && (
             <>
-             <Link to="/Logout">
-                <button className="btn btn-danger" style={{ marginRight: "10px", marginTop: "10px"}}>
-                </button>
-             </Link>
-              <button className="btn btn-danger" style={{ marginTop: "10px"}}>
-             </button>
             </>
          )}
           {!store.token && (
@@ -41,4 +36,4 @@ export const Navbar = () => {
      </div>
     </nav>
   )
-}
+} 
