@@ -16,7 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			popularMovies: [],
+			movies: [],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -106,9 +106,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("login out");
 				setStore({token: null})
 			},
-			setPopularMovies: (movies) => {
-				setStore({ popularMovies: movies });
-			},
+			setMovies: (data) => {
+				const comedyMovies = data.filter(movie => movie.genre === "Comedy");
+				const actionMovies = data.filter(movie => movie.genre === "Action");
+				setStore({ movies: data, comedyMovies, actionMovies });
+			  },
 		}
 	};
 };

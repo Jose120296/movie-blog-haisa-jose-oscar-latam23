@@ -39,3 +39,52 @@ body {
   right: 10px;
 }
 
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-img-top {
+  object-fit: contain;
+  height: 200px;
+  width: 100%;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-text {
+  margin-bottom: 0.5rem;
+}
+
+/* MovieInfo.css */
+
+.movie-info-container {
+  padding: 20px;
+}
+
+.movie-poster {
+  border-radius: 8px;
+}
+
+.movie-details {
+  padding-left: 20px;
+}
+
+.movie-details h2 {
+  color: #333;
+}
+
+.movie-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.movie-details li {
+  margin-bottom: 10px;
+}
+
+/* Agrega más estilos según tus preferencias */

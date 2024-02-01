@@ -23,6 +23,10 @@ class Movies(db.Model):
     title = db.Column(db.String(255), nullable=False)
     genre = db.Column(db.String(255), nullable=False)
     length = db.Column(db.String(255), nullable=False)
+    poster = db.Column(db.String(255), nullable=True)
+    release_date = db.Column(db.String(255), nullable=True)
+    actors = db.Column(db.String(255), nullable=True)
+    description = db.Column(db.Text, nullable=True)
 
     def __repr__(self):
         return f'<Movie {self.title}>'

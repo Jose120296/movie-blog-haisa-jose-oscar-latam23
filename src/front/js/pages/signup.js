@@ -5,18 +5,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "../../styles/home.css";
 
 export const Signup = () => {
-	const { store, actions } = useContext(Context);
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [username, setUsername] = useState("");
-	const navigate = useNavigate();
+  const { store, actions } = useContext(Context);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    actions.signup(email, password);
+    actions.signup(email, password, country,username);
   };
 
   const handleLoginClick = () => {
     navigate("/login");
+    
   };
 
   useEffect(() => {
