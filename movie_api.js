@@ -1,4 +1,4 @@
-const fetch = require('node-fetch'); 
+const fetch = require('node-fetch');
 
 const MOVIES_API_REQUEST =  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=7&sort_by=popularity.desc'"
 const GENRES_API_REQUEST =  "https://api.themoviedb.org/3/genre/movie/list?language=en"
@@ -73,29 +73,29 @@ const sendMovie = async (movie) => {
 }
 
 const populate = async () => {
-    const movies = await getMovies()
-    //const genres = await getGenres()
+    const movies = await getMovies();
+    // const genres = await getGenres();
     for (let movie of movies) {
-        const { data, success} = await getMovie(movie.id)
-        if (!success) {
-            continue;
-        }
-        let movieGenres = ""
-        data.genres.forEach(element => {
-            movieGenres = element.name + " "
-        });
-        const movieStructure = {
-            title: data.title ?? "None data",
-            genre: movieGenres ?? "None data",
-            length: data.runtime,
-            poster: data.poster_path ?? "None data",
-            release_date: data.release_date.length == 0 ? "None data" : data.release_date,
-            actors: "None data",
-            description: data.overview ?? "None data",
-        };
-        sendMovie(movieStructure)
+      const { data, success } = await getMovie(movie.id);
+      if (!success) {
+        continue;
+      }
+      let movieGenres = "";
+      data.genres.forEach((element) => {
+        movieGenres = element.name + " ";
+      });
+      const movieStructure = {
+        title: data.title ?? "None data",
+        genre: movieGenres ?? "None data",
+        length: data.runtime,
+        poster: `https://image.tmdb.org/t/p/w500${data.poster_path}` ?? "None data",
+        release_date: data.release_date.length == 0 ? "None data" : data.release_date,
+        actors: "None data",
+        description: data.overview ?? "None data",
+      };
+      sendMovie(movieStructure);
     }
+  };
 
-}
 
 populate()
