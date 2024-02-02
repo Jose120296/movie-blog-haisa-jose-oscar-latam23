@@ -110,7 +110,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const comedyMovies = data.filter(movie => movie.genre === "Comedy");
 				const actionMovies = data.filter(movie => movie.genre === "Action");
 				setStore({ movies: data, comedyMovies, actionMovies });
-			  },
+			},
+			  
 		}
 	};
 };
