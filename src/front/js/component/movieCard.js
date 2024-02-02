@@ -21,11 +21,11 @@ export const MovieCard = () => {
     fetchMovies();
   }, []);
 
-  console.log("Store:", store); 
+  console.log("Store:", store);
 
   // Verificar si los datos de la película están disponibles
   if (!store.movies || store.movies.length === 0) {
-    console.log("No hay datos de películas disponibles"); 
+    console.log("No hay datos de películas disponibles");
     return <div>No hay películas disponibles</div>;
   }
 
@@ -54,7 +54,9 @@ export const MovieCard = () => {
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">{movie.genre}</p>
                 <p className="card-text">{movie.length}</p>
-                <Link to={`/movies/${movie.id}`} className="btn btn-danger">Ver detalles</Link>
+                <Link to={`/movies/${movie.id}`} className="btn btn-danger">
+                  Ver detalles
+                </Link>
               </div>
             </div>
           </div>
@@ -80,7 +82,9 @@ export const MovieCard = () => {
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">{movie.genre}</p>
                 <p className="card-text">{movie.length}</p>
-                <Link to={`/movies/${movie.id}`} className="btn btn-danger">Ver detalles</Link>
+                <Link to={`/movies/${movie.id}`} className="btn btn-danger">
+                  Ver detalles
+                </Link>
               </div>
             </div>
           </div>
@@ -106,7 +110,9 @@ export const MovieCard = () => {
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">{movie.genre}</p>
                 <p className="card-text">{movie.length}</p>
-                <Link to={`/movies/${movie.id}`} className="btn btn-danger">Ver detalles</Link>
+                <Link to={`/movies/${movie.id}`} className="btn btn-danger">
+                  Ver detalles
+                </Link>
               </div>
             </div>
           </div>

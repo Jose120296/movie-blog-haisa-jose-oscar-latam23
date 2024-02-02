@@ -77,6 +77,7 @@ const populate = async () => {
     // const genres = await getGenres();
     for (let movie of movies) {
       const { data, success } = await getMovie(movie.id);
+      console.log(data.poster_path)
       if (!success) {
         continue;
       }
