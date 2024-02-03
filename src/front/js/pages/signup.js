@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../../styles/home.css";
+import imglogin from "./../../img/imglogin.png"
 
 export const Signup = () => {
   const { store, actions } = useContext(Context);
@@ -78,7 +79,7 @@ export const Signup = () => {
 					)}
 				</div>
 				<div className="container">
-					<img src="../../img/Welcome-rafiki.png" alt="imagen"/>
+					<img src= {imglogin} alt="imagen" className="img-fluid"/>
 				</div>
             </div>
         </div>
