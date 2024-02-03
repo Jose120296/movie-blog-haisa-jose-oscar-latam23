@@ -87,4 +87,9 @@ body {
   margin-bottom: 10px;
 }
 
-/* Agrega más estilos según tus preferencias */
+.movie-info-container {
+  padding-top: 56px; 
+  margin-top: 56px;
+}
+
+
