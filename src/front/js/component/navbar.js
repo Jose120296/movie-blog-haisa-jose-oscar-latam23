@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate, } from "react-router-dom";
 import { Context } from '../store/appContext';
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-
+  
+  
   const handleSignOut = () => {
     actions.logout();
     navigate('/');
@@ -14,7 +15,12 @@ export const Navbar = () => {
   function handleProfileClick() {
     const navigate = useNavigate();
     navigate("/perfil"); // Reemplaza "/perfil" con la ruta real del perfil
-  }
+  };
+
+  function handleHomeclick () {
+    const navigate = useNavigate();
+    navigate("/feed");
+  };
 
   
   return (
@@ -34,21 +40,23 @@ export const Navbar = () => {
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Home</a>
-              </li>           
+                <a className="nav-link" href="#" onClick={handleHomeclick}>Home</a>
+              </li>   
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-menu-up" viewBox="0 0 16 16">
+                  <path d="M7.646 15.854a.5.5 0 0 0 .708 0L10.207 14H14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3.793zM1 9V6h14v3zm14 1v2a1 1 0 0 1-1 1h-3.793a1 1 0 0 0-.707.293l-1.5 1.5-1.5-1.5A1 1 0 0 0 5.793 13H2a1 1 0 0 1-1-1v-2zm0-5H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zM2 11.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 0-1h-8a.5.5 0 0 0-.5.5m0-4a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11a.5.5 0 0 0-.5.5m0-4a.5.5 0 0 0 .5.5h6a.5.5 0 0 0 0-1h-6a.5.5 0 0 0-.5.5"/>
+                </svg>
                 </a>
                 <ul className="dropdown-menu dropdown-menu-dark">
                 <li>
                   <button className="dropdown-item" onClick={handleProfileClick}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
                      <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                     </svg>
                   </button>
                 </li>
-                  <li><a className="dropdown-item" href="#">Another action</a></li>
+                  <li><a className="dropdown-item" href="#">About Us</a></li>
                   <li>
                     <hr className="dropdown-divider"/>
                   </li>
