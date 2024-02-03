@@ -5,6 +5,9 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+/* src/index.css */
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 .home-container {
     position: relative;
     background-size: cover;

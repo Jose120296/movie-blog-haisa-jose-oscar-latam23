@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import { ComedyMovies } from "./comedyMovie";
 
+
 export const MovieCard = () => {
   const { store, actions } = useContext(Context);
 
@@ -43,21 +44,31 @@ export const MovieCard = () => {
       </h2>
       <div className="row flex-nowrap overflow-auto">
         {store.movies.map((movie, index) => (
-          <div className="col" style={{ marginRight: "10px", marginBottom: "10px" }} key={index}>
-            <div className="card" style={{ width: "18rem" }}>
+          <div className="col" style={{ marginBottom: "10px" }} key={index}>
+            <div className="card h-100" style={{ width: "18rem" }}>
               <img
                 src={movie.poster}
                 className="card-img-top"
                 alt="Película"
-                style={{ width: "100%", height: "200px" }}
+                style={{ objectFit: "contain", height: "200px" }}
               />
-              <div className="card-body">
+              <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">{movie.genre}</p>
                 <p className="card-text">{movie.length} min</p>
-                <Link to={`/movies/${movie.id}`} className="btn btn-danger">
-                  Ver detalles
-                </Link>
+                <div className="d-flex justify-content-between mt-auto">
+                  <Link to={`/movies/${movie.id}`} className="btn btn-danger">
+                    Ver detalles
+                  </Link>
+                  <div>
+                    <button className="btn btn-danger me-2">
+                      <i className="fa-solid fa-star"></i>
+                    </button>
+                    <button className="btn btn-danger">
+                      <i className="fa-solid fa-clock"></i>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -65,7 +76,7 @@ export const MovieCard = () => {
       </div>
 
       <br />
-      <ComedyMovies/>
+      <ComedyMovies />
     </div>
   );
 };

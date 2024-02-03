@@ -41,7 +41,7 @@ export const MovieInfo = () => {
                   {/* Asegúrate de que el título no esté dentro del div d-flex */}
                   <h2>{movieInfo.title}</h2>
                   <Link to="/feed" className="btn btn-danger">
-                    🔙
+                    <i class="fa-solid fa-backward"></i>
                   </Link>
                 </div>
                 <p className="lead">{movieInfo.genre}</p>
