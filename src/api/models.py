@@ -7,6 +7,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     hashed_password = db.Column(db.String(580), unique=False, nullable=False)
     
+    
 
     def __repr__(self):
         return f'<User {self.email}>'

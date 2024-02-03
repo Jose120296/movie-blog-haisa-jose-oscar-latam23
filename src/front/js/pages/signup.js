@@ -12,7 +12,7 @@ export const Signup = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    actions.signup(email, password, country,username);
+    actions.signup(email, password,username);
   };
 
   const handleLoginClick = () => {
