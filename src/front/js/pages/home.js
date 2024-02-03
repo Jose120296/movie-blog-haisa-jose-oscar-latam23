@@ -16,7 +16,7 @@ export const Home = () => {
 
   return (
     <div className="home-container d-flex justify-content-center align-items-center " style={{fontFamily: "Agbalumo", backgroundImage: `url(${fondo})` }}>
-        <div className="col-md-6 border border-light">
+        <div className="col-md-6 border border-light bg-light">
         	<div className="container d-flex">
 				<div className="container">
 					<h1 className="mb-4">Welcome!</h1>
@@ -37,7 +37,7 @@ export const Home = () => {
 					</Link>
 				</div>
 				<div className="container">
-					<img src= {fotoWelcome} alt="imagen"/>
+					<img src= {fotoWelcome} alt="imagen" className= "img-fluid" />
 				</div>
             </div>
           </div>
