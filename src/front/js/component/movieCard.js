@@ -54,7 +54,7 @@ export const MovieCard = () => {
               <div className="card-body">
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">{movie.genre}</p>
-                <p className="card-text">{movie.length}</p>
+                <p className="card-text">{movie.length} min</p>
                 <Link to={`/movies/${movie.id}`} className="btn btn-danger">
                   Ver detalles
                 </Link>
