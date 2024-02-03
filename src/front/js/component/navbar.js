@@ -5,7 +5,7 @@ import { Context } from '../store/appContext';
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-  const [userLoggedIn, setuserLoggedIn] = useState(false);
+  
   
   const handleSignOut = () => {
     actions.logout();
