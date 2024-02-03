@@ -1,11 +1,11 @@
 const fetch = require('node-fetch');
 
 
-const MOVIES_API_REQUEST = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=6&sort_by=popularity.desc";
+const MOVIES_API_REQUEST = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=420&sort_by=popularity.desc";
 const GENRES_API_REQUEST = "https://api.themoviedb.org/3/genre/movie/list?language=en";
 const PROJECT_API = 'https://humble-goggles-694w7779xjx3xr9-3001.app.github.dev';
 
-const API_KEY = "8625bab00ddcdc7ae2bb6b2892eae6e4"; // Reemplazar con tu clave de API de TMDb
+const API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NjI1YmFiMDBkZGNkYzdhZTJiYjZiMjg5MmVhZTZlNCIsInN1YiI6IjY1YjY4MjI4MmZhZjRkMDBjOWRjMWNiZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9zmeG3eL_llYOqDbxQS1AHjVg7v0qleM5M83PGF26tA"; 
 
 const getMovies = async () => {
     try {
@@ -98,6 +98,8 @@ const populate = async () => {
                 description: data.overview || "None data",
             };
 
+            console.log("Película poblada:", movieStructure);
+
             await sendMovie(movieStructure);
         }
 
@@ -108,3 +110,4 @@ const populate = async () => {
 };
 
 populate();
+
