@@ -14,7 +14,7 @@ export const ComedyMovies = () => {
         const data = await response.json();
         console.log("Data from API:", data);
         actions.setMovies(data);
-        setComedyMovies(data.filter(movie => movie.genre === "Comedy"));
+        setComedyMovies(data.filter(movie => movie.genre.includes("Comedy") ));
       } catch (error) {
         console.error("Error al obtener los datos de las películas:", error);
       }
