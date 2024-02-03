@@ -3,7 +3,8 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../../styles/home.css";
-
+import fondo from "./../../img/butacarande.png"
+import fotoWelcome from "./../../img/Welcome-rafiki.png"
 
 
 export const Home = () => {
@@ -14,7 +15,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="home-container d-flex justify-content-center align-items-center " style={{fontFamily: "Agbalumo"}}>
+    <div className="home-container d-flex justify-content-center align-items-center " style={{fontFamily: "Agbalumo", backgroundImage: `url(${fondo})` }}>
         <div className="col-md-6 border border-light">
         	<div className="container d-flex">
 				<div className="container">
@@ -36,7 +37,7 @@ export const Home = () => {
 					</Link>
 				</div>
 				<div className="container">
-					<img src="../../img/Welcome-rafiki.png" alt="imagen"/>
+					<img src= {fotoWelcome} alt="imagen"/>
 				</div>
             </div>
           </div>
