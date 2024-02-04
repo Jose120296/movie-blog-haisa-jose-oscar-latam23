@@ -24,7 +24,7 @@ class Movies(db.Model):
     genre = db.Column(db.String(255), nullable=False)
     length = db.Column(db.String(255), nullable=False)
     poster = db.Column(db.String(255), nullable=True)
-    release_date = db.Column(db.Date, nullable=True, default=datetime.utcnow)
+    release_date = db.Column(db.Date, nullable=True)
     description = db.Column(db.Text, nullable=True)
 
     def __repr__(self):

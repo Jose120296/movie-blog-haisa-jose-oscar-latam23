@@ -14,7 +14,6 @@ export const MovieCard = () => {
       try {
         const response = await fetch(store.API_URL + "api/movies");
         const data = await response.json();
-        console.log("Data from API:", data);
         actions.setMovies(data);
       } catch (error) {
         console.error("Error al obtener los datos de las películas:", error);
@@ -24,20 +23,11 @@ export const MovieCard = () => {
     fetchMovies();
   }, []);
 
-  console.log("Store:", store);
-
   // Verificar si los datos de la película están disponibles
   if (!store.movies || store.movies.length === 0) {
     console.log("No hay datos de películas disponibles");
     return <div>No hay películas disponibles</div>;
   }
-
-
-
-
-
-
-
 
   return (
     <div className="container text-left mt-5">

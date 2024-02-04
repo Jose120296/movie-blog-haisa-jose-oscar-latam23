@@ -116,7 +116,6 @@ def create_movie():
         length=length,
         poster= poster,
         release_date=release_date,
-        actors = actors,
         description= description
     )
 
@@ -147,59 +146,76 @@ def get_movies():
 
     return jsonify(result), 200
 
+@api.route('/movies/<int:id>', methods=['GET'])
+def get_movie_detail(id):
+    movie = Movies.query.get(id)
+    if movie:
+        movie_data = {
+            "id": movie.id,
+            "title": movie.title,
+            "genre": movie.genre,
+            "length": movie.length,
+            "poster": movie.poster,
+            "release_date": movie.release_date,
+            "description": movie.description
+        }
+        return jsonify(movie_data), 200
+    else:
+        return jsonify({"error": "Movie not found"}), 404
+
 # Resto del código...
 
-# @api.route('/movies/<int:movie_id>/comments', methods=['POST'])
-# @jwt_required()
-# def create_comment(movie_id):
-#     data = request.json
-#     text = data.get("text")
+@api.route('/movies/<int:movie_id>/comments', methods=['POST'])
+@jwt_required()
+def create_comment(movie_id):
+    data = request.json
+    text = data.get("text")
 
-#     if not text:
-#         return jsonify({"message": "Missing required fields"}), 400
+    if not text:
+        return jsonify({"message": "Missing required fields"}), 400
 
-#     current_user = get_jwt_identity()
+    current_user = get_jwt_identity()
 
-#     user = User.query.filter_by(email=current_user).first()
-#     movie = Movies.query.get(movie_id)
+    user = User.query.filter_by(email=current_user).first()
+    movie = Movies.query.get(movie_id)
 
-#     if not user or not movie:
-#         return jsonify({"message": "User or movie not found"}), 404
+    if not user or not movie:
+        return jsonify({"message": "User or movie not found"}), 404
 
-#     comment = Comment(
-#         text=text,
-#         user_id=user.id,
-#         movie_id=movie.id
-#     )
+    comment = Comment(
+        text=text,
+        user_id=user.id,
+        movie_id=movie.id
+    )
 
-#     try:
-#         db.session.add(comment)
-#         db.session.commit()
-#     except Exception as e:
-#         return jsonify({"message": "Failed to create comment"}), 500
+    try:
+        db.session.add(comment)
+        db.session.commit()
+    except Exception as e:
+        return jsonify({"message": "Failed to create comment"}), 500
 
-#     return jsonify({"id": comment.id}), 201
+    return jsonify({"id": comment.id}), 201
 
-# @api.route('/movies/<int:movie_id>/comments', methods=['GET'])
-# def get_comments(movie_id):
-#     movie = Movies.query.get(movie_id)
+@api.route('/movies/<int:movie_id>/comments', methods=['GET'])
+def get_comments(movie_id):
+    movie = Movies.query.get(movie_id)
 
-#     if movie is None:
-#         return jsonify({'error': 'Movie not found'}), 404
+    if movie is None:
+        return jsonify({'error': 'Movie not found'}), 404
 
-#     comments = Comment.query.filter_by(movie_id=movie.id).all()
+    comments = Comment.query.filter_by(movie_id=movie.id).all()
 
-#     result = []
-#     for comment in comments:
-#         comment_data = {
-#             "id": comment.id,
-#             "text": comment.text,
-#             "user_id": comment.user_id,
-#             "created_at": comment.created_at.isoformat()  # O cualquier otro formato que prefieras
-#         }
-#         result.append(comment_data)
+    result = []
+    for comment in comments:
+        comment_data = {
+            "id": comment.id,
+            "text": comment.text,
+            "user_id": comment.user_id,
+            "created_at": comment.created_at.isoformat()  # O cualquier otro formato que prefieras
+        }
+        result.append(comment_data)
 
-#     return jsonify(result), 200
+    return jsonify(result), 200
 
 
 

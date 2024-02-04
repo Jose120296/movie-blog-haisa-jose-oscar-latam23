@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { CommentSection } from "../component/commentSection";
 
 
 export const MovieInfo = () => {
@@ -66,6 +67,7 @@ export const MovieInfo = () => {
                   </li>
                 </ul>
               </div>
+              <CommentSection/>
             </div>
           </div>
         </>

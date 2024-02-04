@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 
-const MOVIES_API_REQUEST = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=66&sort_by=popularity.desc";
+const MOVIES_API_REQUEST = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc";
 const GENRES_API_REQUEST = "https://api.themoviedb.org/3/genre/movie/list?language=en";
 const PROJECT_API = 'https://humble-goggles-694w7779xjx3xr9-3001.app.github.dev';
 
@@ -22,27 +22,26 @@ const getMovies = async () => {
     }
 };
 
-const sendMovie = async (movieData) => {
+const getMovie = async (movie_id) => {
     try {
-        const response = await fetch(`${PROJECT_API}/api/movies`, {
-            method: 'POST',
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}?language=en-US`, {
             headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(movieData),
+                "Authorization": `Bearer ${API_KEY}`
+            }
         });
-
-        if (!response.ok) {
-            console.error(`Error al enviar la película: ${movieData.title}`);
-            console.error(`Estado de la respuesta: ${response.status}`);
-        } else {
-            console.log(`Película enviada correctamente: ${movieData.title}`);
+        const body = await response.json();
+        
+        if (response.status !== 200) {
+            console.error(`No se encontró la película: ${movie_id}`, body);
+            return { success: false };
         }
+        
+        return { success: true, data: body };
     } catch (error) {
-        console.error(`Error al enviar la película: ${movieData.title}`, error);
+        console.error("Error al obtener detalles de la película:", error);
+        return { success: false };
     }
 };
-
 
 const getGenres = async () => {
     try {
@@ -59,6 +58,22 @@ const getGenres = async () => {
     }
 };
 
+const sendMovie = async (movie) => {
+    try {
+        const response = await fetch(`${PROJECT_API}/api/movies`, {
+            method: "POST",
+            body: JSON.stringify(movie),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const responseBody = await response.json();
+
+        console.log(`Película agregada: ${responseBody.id}, Estado: ${response.status}`);
+    } catch (error) {
+        console.error("Error al enviar la película:", error);
+    }
+};
 
 const populate = async () => {
     try {
@@ -80,11 +95,13 @@ const populate = async () => {
                 length: data.runtime,
                 poster: `https://image.tmdb.org/t/p/w500${data.poster_path}` || "None data",
                 release_date: data.release_date || "None data",
+                actors: "None data",
                 description: data.overview || "None data",
             };
 
             console.log("Película poblada:", movieStructure);
 
+            // Agrega esta línea para enviar la película a tu API
             await sendMovie(movieStructure);
         }
 
@@ -95,4 +112,3 @@ const populate = async () => {
 };
 
 populate();
-

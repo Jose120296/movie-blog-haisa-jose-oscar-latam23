@@ -12,7 +12,6 @@ export const ComedyMovies = () => {
       try {
         const response = await fetch(store.API_URL + "api/movies");
         const data = await response.json();
-        console.log("Data from API:", data);
         actions.setMovies(data);
         setComedyMovies(data.filter(movie => movie.genre.includes("Comedy") ));
       } catch (error) {

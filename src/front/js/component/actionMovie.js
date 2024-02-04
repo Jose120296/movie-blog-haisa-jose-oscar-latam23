@@ -13,11 +13,9 @@ export const ActionMovies = () => {
       try {
         const response = await fetch(store.API_URL + "api/movies");
         const data = await response.json();
-        console.log("Data from API:", data);
         actions.setMovies(data);
         setActionMovies(data.filter(movie => movie.genre.includes("Action")));
       } catch (error) {
-        console.error("Error al obtener los datos de las películas:", error);
       }
     };
 

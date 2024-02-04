@@ -13,7 +13,6 @@ export const DramaMovies = () => {
       try {
         const response = await fetch(store.API_URL + "api/movies");
         const data = await response.json();
-        console.log("Data from API:", data);
         actions.setMovies(data);
         setDramaMovies(data.filter(movie => movie.genre.includes("Drama")));
       } catch (error) {
