@@ -34,6 +34,11 @@ export const MovieCard = () => {
 
 
 
+
+
+
+
+
   return (
     <div className="container text-left mt-5">
       <h2>

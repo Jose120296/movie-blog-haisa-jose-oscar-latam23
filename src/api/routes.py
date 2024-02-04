@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Movies
+from api.models import db, User, Movies, Comment 
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
@@ -10,6 +10,7 @@ from bcrypt import gensalt
 from flask_bcrypt import generate_password_hash, check_password_hash
 
 api = Blueprint('api', __name__)
+
 
 # Allow CORS requests to this API
 CORS(api)
@@ -28,14 +29,16 @@ def handle_hello():
 def handle_register():
     data = request.json
     email = data.get("email")
-    user_name = data.get("user_name")
     password = data.get("password")
+    user_name= data.get("user_name")
     print(password)
+    # Verificar que nos envien los datos completos
     data = request.json
-    if not data or "email" not in data or "password" not in data or "user_name" not in data:
+    if not data or "email" not in data or "password" not in data:
         return jsonify({
         "message": "Invalid request data"
     }), 400
+    # Verificar que el usuario no este registrado (verificar el email)
     existing_user = User.query.filter_by(email=email).first()
     if existing_user:
         return jsonify({
@@ -43,16 +46,18 @@ def handle_register():
         }), 400
     # Crear el salt
     #salt = str(gensalt(), encoding='utf-8')
-    # Crear el hashed_password -> password
+    # Crear el hashed_password -> password + salt
     hashed_password = generate_password_hash(password).decode("utf-8")
     print(hashed_password)
+    # Crear el usuario
     new_user = User(
         email = email,
-        user_name = user_name,
         hashed_password = hashed_password,
+        user_name= user_name
         #salt = salt
     )
     print(new_user)
+    # Guardar en db
     try:
         db.session.add(new_user)
         db.session.commit()
@@ -61,15 +66,17 @@ def handle_register():
         return jsonify({
             "message": "DB error"
         }), 500
-    return jsonify({
-            "message": "User created"
-        }), 201
+    # Responder 201
+    return "", 201
+
 
 @api.route("/token", methods=["POST"])
 def create_token():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    print(password)
+    print("password", password)
+    print("email", email)
+
     if not email or not password:
         return jsonify({"msg": "Bad email or password"}), 401
     user = User.query.filter_by(email= email).first()
@@ -87,6 +94,7 @@ def user_in():
     current_user = get_jwt_identity()
     print(current_user)
     return jsonify({"message": "This is a private page"})
+
 
 @api.route('/movies', methods=['POST'])
 def create_movie():
@@ -133,7 +141,6 @@ def get_movies():
             "length": movie.length,
             "poster": movie.poster,
             "release_date": movie.release_date,
-            "actors": movie.actors,
             "description": movie.description
         }
         result.append(movie_data)
@@ -142,22 +149,58 @@ def get_movies():
 
 # Resto del código...
 
-@api.route('/movies/<int:movie_id>', methods=['GET'])
-def get_movie(movie_id):
-    movie = Movies.query.get(movie_id)
+# @api.route('/movies/<int:movie_id>/comments', methods=['POST'])
+# @jwt_required()
+# def create_comment(movie_id):
+#     data = request.json
+#     text = data.get("text")
 
-    if movie is None:
-        return jsonify({'error': 'Movie not found'}), 404
+#     if not text:
+#         return jsonify({"message": "Missing required fields"}), 400
 
-    movie_data = {
-        "id": movie.id,
-        "title": movie.title,
-        "genre": movie.genre,
-        "length": movie.length,
-        "poster": movie.poster,
-        "release_date": movie.release_date,
-        "actors": movie.actors,
-        "description": movie.description
-    }
+#     current_user = get_jwt_identity()
 
-    return jsonify(movie_data), 200
+#     user = User.query.filter_by(email=current_user).first()
+#     movie = Movies.query.get(movie_id)
+
+#     if not user or not movie:
+#         return jsonify({"message": "User or movie not found"}), 404
+
+#     comment = Comment(
+#         text=text,
+#         user_id=user.id,
+#         movie_id=movie.id
+#     )
+
+#     try:
+#         db.session.add(comment)
+#         db.session.commit()
+#     except Exception as e:
+#         return jsonify({"message": "Failed to create comment"}), 500
+
+#     return jsonify({"id": comment.id}), 201
+
+# @api.route('/movies/<int:movie_id>/comments', methods=['GET'])
+# def get_comments(movie_id):
+#     movie = Movies.query.get(movie_id)
+
+#     if movie is None:
+#         return jsonify({'error': 'Movie not found'}), 404
+
+#     comments = Comment.query.filter_by(movie_id=movie.id).all()
+
+#     result = []
+#     for comment in comments:
+#         comment_data = {
+#             "id": comment.id,
+#             "text": comment.text,
+#             "user_id": comment.user_id,
+#             "created_at": comment.created_at.isoformat()  # O cualquier otro formato que prefieras
+#         }
+#         result.append(comment_data)
+
+#     return jsonify(result), 200
+
+
+
+

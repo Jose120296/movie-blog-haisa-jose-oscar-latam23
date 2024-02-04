@@ -50,7 +50,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			signup: async (email, password) => {
+			signup: async (email, password, user_name) => {
 				const store = getStore()
 				const infoNewUser = {
 					method: "POST",
@@ -59,19 +59,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify({
 						"email": email,
-						"password": password
+						"password": password,
+						"user_name": user_name
+
 					})
 				};
 				try {
 					const resp = await fetch (store.API_URL + '/api/user', infoNewUser)
-					if(resp.status != 201) {
+					if (resp.status !== 201) {
+						const errorData = await resp.json();
+						console.error("Error during signup:", errorData);
 						alert("There has been some error");
-						return false		
+						return false;
 					}
+				} catch (error) {
+					console.error("Fatal error during signup:", error);
 				}
-				catch(error){
-					console.error("Error fatal")
-				}
+				
 			},
 			login: async (email, password) => {
 				const store = getStore()
@@ -85,21 +89,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"password": password
 					})
 				}
-				try{
-					const resp = await fetch (store.API_URL + '/api/token', opts)
-					if(resp.status !== 200) {
+				try {
+					const resp = await fetch (store.API_URL + '/api/token', opts);
+					if (resp.status !== 200) {
+						const errorData = await resp.json();
+						console.error("Error during login:", errorData);
 						alert("There has been some error");
-						return false
+						return false;
 					}
 					const data = await resp.json();
-					console.log("this came from the backend", data);
-					sessionStorage.setItem("token", data.access_token)
-					setStore ({token: data.access_token})
+					console.log("Token from the backend:", data.access_token);
+					sessionStorage.setItem("token", data.access_token);
+					setStore ({token: data.access_token});
 					return true;
+				} catch (error) {
+					console.error("Fatal error during login:", error);
 				}
-				catch(error){
-					console.error("Thera was an error")
-				}
+				
 			},
 			logout: () => {
 				sessionStorage.removeItem("token");
@@ -107,9 +113,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({token: null})
 			},
 			setMovies: (data) => {
-				const comedyMovies = data.filter(movie => movie.genre === "Comedy");
-				const actionMovies = data.filter(movie => movie.genre === "Action");
-				setStore({ movies: data, comedyMovies, actionMovies });
+				setStore({ movies: data});
 			},
 			  
 		}
