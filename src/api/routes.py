@@ -194,7 +194,8 @@ def create_comment(movie_id):
     except Exception as e:
         return jsonify({"message": "Failed to create comment"}), 500
 
-    return jsonify({"id": comment.id}), 201
+    return jsonify(comment.serialize()), 201
+
 
 @api.route('/movies/<int:movie_id>/comments', methods=['GET'])
 def get_comments(movie_id):

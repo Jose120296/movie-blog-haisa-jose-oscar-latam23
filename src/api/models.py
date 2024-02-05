@@ -39,3 +39,12 @@ class Comment(db.Model):
 
     def __repr__(self):
         return f'<Comment {self.text}>'
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "text": self.text,
+            "created_at": self.created_at.isoformat(),
+            "user_name": User.query.get(self.user_id).user_name, 
+            "movie_id": self.movie_id
+        }
