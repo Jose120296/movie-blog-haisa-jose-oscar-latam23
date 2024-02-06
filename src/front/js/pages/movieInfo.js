@@ -22,7 +22,7 @@ export const MovieInfo = () => {
     };
 
     fetchMovieInfo();
-  }, [id, store.API_URL]);
+  }, [id]);
 
   return (
     <div className="movie-info-container">
@@ -42,7 +42,7 @@ export const MovieInfo = () => {
                   {/* Asegúrate de que el título no esté dentro del div d-flex */}
                   <h2>{movieInfo.title}</h2>
                   <Link to="/feed" className="btn btn-danger">
-                    <i class="fa-solid fa-backward"></i>
+                    <i className="fa-solid fa-backward"></i>
                   </Link>
                 </div>
                 <p className="lead">{movieInfo.genre}</p>
@@ -67,7 +67,7 @@ export const MovieInfo = () => {
                   </li>
                 </ul>
               </div>
-              <CommentSection/>
+              <CommentSection movieId={id}/>
             </div>
           </div>
         </>

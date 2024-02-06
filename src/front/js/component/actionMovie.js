@@ -20,7 +20,7 @@ export const ActionMovies = () => {
     };
 
     fetchActionMovies();
-  }, [store.API_URL, actions]);
+  }, []);
 
   if (!actionMovies || actionMovies.length === 0) {
     console.log("No hay datos de películas de acción disponibles");

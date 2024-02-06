@@ -17,6 +17,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			movies: [],
+			comments: [],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -115,6 +116,75 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setMovies: (data) => {
 				setStore({ movies: data});
 			},
+			addComment: async (movieId, text) => {
+				const store = getStore();
+
+				const opts = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${store.token}`
+					},
+					body: JSON.stringify({
+						"text": text
+					})
+				};
+
+				try {
+					const resp = await fetch(`${store.API_URL}api/movies/${movieId}/comments`, opts);
+					
+					if (resp.status !== 201) {
+						const errorData = await resp.json();
+						console.error("Error adding comment:", errorData);
+
+						alert("There has been some error");
+						return false;
+					}
+
+					// Actualizar los comentarios después de agregar uno nuevo
+					getActions().getComments(movieId);
+
+					return true;
+				} catch (error) {
+					console.error("Fatal error adding comment:", error);
+					return false;
+				}
+			},
+			getComments: async (movieId) => {
+				const store = getStore();
+			  
+				const opts = {
+				  method: "GET",
+				  headers: {
+					"Content-Type": "application/json",
+				  },
+				};
+			  
+				try {
+				  const resp = await fetch(`${store.API_URL}api/movies/${movieId}/comments`, opts);
+			  
+				  if (resp.status !== 200) {
+					const errorData = await resp.json();
+					console.error("Error getting comments:", errorData);
+					alert("There has been some error");
+					return false;
+				  }
+			  
+				  const data = await resp.json();
+				  console.log(data)
+			  
+				  // Actualizar los comentarios en el estado global
+				  setStore({ comments: data });
+				  console.log(store.comments);
+				  return true;
+				} catch (error) {
+					console.error("Fatal error getting comments:", error);
+					// Puedes agregar un alert o manejar el error de otra manera
+					alert("Error getting comments. Please try again.");
+					return false;
+				}
+			  },
+			  
 			  
 		}
 	};

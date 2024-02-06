@@ -21,7 +21,7 @@ export const DramaMovies = () => {
     };
 
     fetchDramaMovies();
-  }, [store.API_URL, actions]);
+  }, []);
 
   if (!dramaMovies || dramaMovies.length === 0) {
     console.log("No hay datos de películas de drama disponibles");

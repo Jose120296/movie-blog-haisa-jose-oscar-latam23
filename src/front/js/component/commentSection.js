@@ -1,57 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { Context } from "../store/appContext";
 
-export const CommentSection = () => {
-  // Estado para almacenar los comentarios
-  const [comments, setComments] = useState([]);
-  // Estado para el formulario de comentario
+export const CommentSection = (props) => {
   const [newComment, setNewComment] = useState({ username: "", comment: "" });
+  const { store, actions } = useContext(Context);
 
-  // Manejar cambios en los campos del formulario
+  useEffect(() => {
+    // Al cargar el componente, obtén los comentarios de la API
+    actions.getComments(props.movieId);
+  }, [props.movieId]);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewComment({ ...newComment, [name]: value });
   };
 
-  // Manejar el envío del formulario
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    // Agregar el nuevo comentario al estado de comentarios
-    setComments([...comments, newComment]);
-    // Limpiar el formulario después de agregar el comentario
-    setNewComment({ username: "", comment: "" });
+
+    // Verifica si el comentario está vacío antes de enviarlo
+    if (!newComment.comment.trim()) {
+      alert("Please enter a comment before submitting.");
+      return;
+    }
+
+    // Intenta agregar el comentario
+    const success = await actions.addComment(props.movieId, newComment.comment);
+
+    if (success) {
+      // Si se agregó correctamente, actualiza la lista de comentarios
+      actions.getComments(props.movieId);
+      // Limpia el campo de comentario
+      setNewComment({ ...newComment, comment: "" });
+    } else {
+      alert("There was an error adding the comment. Please try again.");
+    }
   };
 
   return (
     <div className="movie-comments mt-4">
-      <h3>Comments</h3>
-
-      {/* Mostrar comentarios existentes */}
-      {comments.map((comment, index) => (
-        <div key={index} className="comment">
-          <strong>{comment.username}:</strong> {comment.comment}
+      <h2> Comments</h2>
+      {/* Muestra los comentarios recuperados de la API */}
+      {store.comments.map((comment, index) => (
+        <div key={index} className="comment-container">
+          <div className="comment-content">
+            <strong>{comment.user_name}:</strong> {comment.text}
+          </div>
+          <div className="comment-date">
+            <small>{new Date(comment.created_at).toLocaleString()}</small>
+          </div>
         </div>
       ))}
 
-      {/* Formulario para agregar nuevos comentarios */}
       <form onSubmit={handleFormSubmit}>
         <div className="mb-3">
-          <label htmlFor="username" className="form-label">
-            Username
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="username"
-            name="username"
-            value={newComment.username}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="comment" className="form-label">
-            Comment
-          </label>
           <textarea
             className="form-control"
             id="comment"
@@ -69,4 +71,3 @@ export const CommentSection = () => {
     </div>
   );
 };
-

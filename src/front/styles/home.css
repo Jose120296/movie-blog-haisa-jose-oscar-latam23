@@ -136,4 +136,23 @@ body {
   margin-top: 56px;
 }
 
+.comment-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.comment-content {
+  flex-grow: 1;
+}
+
+.comment-date {
+  flex-shrink: 0;
+  color: #888;
+}
+
 

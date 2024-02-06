@@ -173,29 +173,32 @@ def create_comment(movie_id):
     text = data.get("text")
 
     if not text:
-        return jsonify({"message": "Missing required fields"}), 400
+        return jsonify({"message": "Missing required 'text' field"}), 400
 
     current_user = get_jwt_identity()
 
+    # Obtener el usuario actual
     user = User.query.filter_by(email=current_user).first()
-    movie = Movies.query.get(movie_id)
 
-    if not user or not movie:
-        return jsonify({"message": "User or movie not found"}), 404
+    if not user:
+        return jsonify({"message": "User not found"}), 404
 
+    # Crear el comentario asociándolo con el usuario y la película
     comment = Comment(
         text=text,
         user_id=user.id,
-        movie_id=movie.id
+        movie_id=movie_id
     )
 
     try:
         db.session.add(comment)
         db.session.commit()
+        return jsonify(comment.serialize()), 201
     except Exception as e:
+        print("Error creating comment:", str(e))
+        db.session.rollback()
         return jsonify({"message": "Failed to create comment"}), 500
 
-    return jsonify(comment.serialize()), 201
 
 
 @api.route('/movies/<int:movie_id>/comments', methods=['GET'])
@@ -209,15 +212,18 @@ def get_comments(movie_id):
 
     result = []
     for comment in comments:
+        user = User.query.get(comment.user_id)
         comment_data = {
             "id": comment.id,
             "text": comment.text,
             "user_id": comment.user_id,
-            "created_at": comment.created_at.isoformat()  # O cualquier otro formato que prefieras
+            "user_name": user.user_name,  # Agrega el nombre de usuario al resultado
+            "created_at": comment.created_at.isoformat()
         }
         result.append(comment_data)
 
     return jsonify(result), 200
+
 
 
 @api.route('/favorites', methods=['POST'])

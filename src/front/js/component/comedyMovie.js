@@ -20,7 +20,7 @@ export const ComedyMovies = () => {
     };
 
     fetchComedyMovies();
-  }, [store.API_URL, actions]);
+  }, []);
 
   if (!comedyMovies || comedyMovies.length === 0) {
     console.log("No hay datos de películas de comedia disponibles");
