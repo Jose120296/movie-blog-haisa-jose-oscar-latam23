@@ -9,7 +9,7 @@ export const Navbar = () => {
   
   const handleSignOut = () => {
     actions.logout();
-    navigate('/home');
+    navigate('/');
   };
 
   function handleProfileClick() {

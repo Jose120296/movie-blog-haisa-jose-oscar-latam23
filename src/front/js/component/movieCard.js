@@ -12,7 +12,7 @@ export const MovieCard = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await fetch(store.API_URL + "api/movies");
+        const response = await fetch(store.API_URL + "/api/movies");
         const data = await response.json();
         actions.setMovies(data);
       } catch (error) {
@@ -37,12 +37,12 @@ export const MovieCard = () => {
       <div className="row flex-nowrap overflow-auto">
         {store.movies.map((movie, index) => (
           <div className="col" style={{ marginRight: "10px", marginBottom: "10px" }} key={index}>
-            <div className="card" style={{ width: "18rem" }}>
+            <div className="card h-100" style={{ width: "18rem" }}>
               <img
                 src={movie.poster}
                 className="card-img-top"
                 alt="Película"
-                style={{ width: "100%", height: "400px" }}
+                style={{ objectFit: "cover", width: "100%", height: "400px" }}
               />
               <div className="card-body">
                 <h5 className="card-title">{movie.title}</h5>
