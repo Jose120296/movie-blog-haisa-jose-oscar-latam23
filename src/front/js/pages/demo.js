@@ -1,41 +1,54 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-
-import { Context } from "../store/appContext";
+import { Link, useNavigate} from "react-router-dom";
+import "../../styles/demo.css";
 
 export const Demo = () => {
-	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
+		<div className="profile-page sidebar-collapse">
+		
+        
+			<div className="page-header header-filter" data-parallax="true" ></div>
+				<div className="main main-raised">
+				<div className="profile-content">
+					<div className="container">
+					<div className="row">
+						<div className="col-md-6 ml-auto mr-auto">
+						<div className="profile">
+							<div className="avatar">
+							<img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Mindo_Ecuador_1093.jpg" alt="Circle Image" className="img-raised rounded-circle img-fluid"/>
+							</div>
+							<div className="name">
+							<h3 className="title">username</h3>
+							</div>
+						</div>
+						</div>
+						</div>
+					</div>
+					<div className="description text-center">
+						<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima iusto repellendus, vero ullam laborum beatae placeat eveniet dolore repellat animi, odio consequuntur molestiae blanditiis deserunt sit nostrum quibusdam accusantium facilis. </p>
+					</div>
+					<div className="row">
+						<div className="col-md-6 ml-auto mr-auto">
+							<div className="profile-tabs">
+								<ul className="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+								<li className="nav-item">
+									<a className="nav-link" href="#studio" role="tab" data-toggle="tab">
+									<i className="material-icons">movie</i> Visto
+									</a>
+								</li>
+								<li className="nav-item">
+									<a className="nav-link" href="#favorite" role="tab" data-toggle="tab">
+									<i className="material-icons">favorite</i> Favorite
+									</a>
+								</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	);
-};
+	};
