@@ -11,7 +11,7 @@ export const ActionMovies = () => {
   useEffect(() => {
     const fetchActionMovies = async () => {
       try {
-        const response = await fetch(store.API_URL + "/api/movies");
+        const response = await fetch(store.API_URL + "api/movies");
         const data = await response.json();
         actions.setMovies(data);
         setActionMovies(data.filter(movie => movie.genre.includes("Action")));

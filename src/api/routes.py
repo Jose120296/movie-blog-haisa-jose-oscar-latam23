@@ -8,7 +8,7 @@ from flask_cors import CORS
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from bcrypt import gensalt
 from flask_bcrypt import generate_password_hash, check_password_hash
-
+from models import Favorite
 api = Blueprint('api', __name__)
 
 
@@ -218,5 +218,23 @@ def get_comments(movie_id):
     return jsonify(result), 200
 
 
+
+@api.route('/favorites', methods=['POST'])
+def add_favorite():
+
+    favorito_nuevo = request.json
+    nuevo_favorito = Favorite(movie_id=favorito_nuevo['movie_id'], title=favorito_nuevo['title'])
+    db.session.add(nuevo_favorito)
+    db.session.commit()
+
+    return jsonify({'message': 'Favorito añadido correctamente'})
+
+@api.route('/favorites/<int:user_id>', methods=['GET'])
+def get_favorites(user_id):
+    
+    favoritos_usuario = Favorite.query.filter_by(user_id=user_id).all()
+    favoritos_serializados = [{'movie_id': favorito.movie_id, 'title': favorito.title} for favorito in favoritos_usuario]
+
+    return jsonify({'favorites': favoritos_serializados})
 
 
