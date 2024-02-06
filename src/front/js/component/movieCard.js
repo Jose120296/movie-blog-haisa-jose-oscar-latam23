@@ -29,6 +29,7 @@ export const MovieCard = () => {
     return <div>No hay películas disponibles</div>;
   }
 
+
   return (
     <div className="container text-left mt-5">
       <h2>
