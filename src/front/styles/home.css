@@ -8,32 +8,41 @@
 /* src/index.css */
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
-.home-container {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-}
-  .texto-blanco {
-    color: white;
-  }
 
-  html,
+
+.home-container {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+}
+.texto-blanco {
+  color: white;
+}
+
 body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  /* background-image: url('https://images.unsplash.com/photo-1574267432644-f410f8ec2474?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YnV0YWNhcyUyMGRlJTIwY2luZXxlbnwwfHwwfHx8MA%3D%3D'); Ajusta la ruta según la ubicación real de tu imagen */
+  background-size: cover;
+  background-position: center;
+  font-family: "Agbalumo", sans-serif;
+}
+
+html,
+body {
+  
   height: 100%;
 
 }
+
 
 .wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-.home-container {
-  flex-grow: 1;
-
 }
 
 .settings {
@@ -42,26 +51,71 @@ body {
   right: 10px;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.text-left {
+  text-align: left;
+}
+
 .card {
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
 
 .card-img-top {
-  object-fit: contain;
+  object-fit: cover;
   height: 200px;
-  width: 100%;
+}
+
+.card-body {
+  padding: 15px;
 }
 
 .card-title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
 .card-text {
-  margin-bottom: 0.5rem;
+  margin-bottom: 10px;
 }
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #bd2130;
+  border-color: #bd2130;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.row {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.col {
+  padding: 0 5px;
+}
+
+/* Add your own custom styles as needed */
+
 
 /* MovieInfo.css */
 
@@ -73,9 +127,7 @@ body {
   border-radius: 8px;
 }
 
-.movie-details {
-  padding-left: 20px;
-}
+
 
 .movie-details h2 {
   color: #333;
@@ -93,6 +145,25 @@ body {
 .movie-info-container {
   padding-top: 56px; 
   margin-top: 56px;
+}
+
+.comment-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.comment-content {
+  flex-grow: 1;
+}
+
+.comment-date {
+  flex-shrink: 0;
+  color: #888;
 }
 
 

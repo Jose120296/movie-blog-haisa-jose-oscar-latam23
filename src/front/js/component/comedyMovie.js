@@ -12,7 +12,6 @@ export const ComedyMovies = () => {
       try {
         const response = await fetch(store.API_URL + "api/movies");
         const data = await response.json();
-        console.log("Data from API:", data);
         actions.setMovies(data);
         setComedyMovies(data.filter(movie => movie.genre.includes("Comedy") ));
       } catch (error) {
@@ -21,7 +20,7 @@ export const ComedyMovies = () => {
     };
 
     fetchComedyMovies();
-  }, [store.API_URL, actions]);
+  }, []);
 
   if (!comedyMovies || comedyMovies.length === 0) {
     console.log("No hay datos de películas de comedia disponibles");
@@ -29,8 +28,8 @@ export const ComedyMovies = () => {
   }
 
   return (
-    <div className="container text-center mt-5">
-      <h2 className="text-left">
+    <div className="container text-left mt-5">
+      <h2>
         <strong>Comedy</strong>
       </h2>
       <div className="row flex-nowrap overflow-auto">
@@ -41,20 +40,31 @@ export const ComedyMovies = () => {
                 src={movie.poster}
                 className="card-img-top"
                 alt="Película"
-                style={{ width: "100%", height: "200px" }}
+                style={{ objectFit: "cover", height: "400px" }}
               />
-              <div className="card-body">
+              <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">{movie.genre}</p>
-                <p className="card-text">{movie.length}</p>
-                <Link to={`/movies/${movie.id}`} className="btn btn-danger">
-                  Ver detalles
-                </Link>
+                <p className="card-text">{movie.length} min</p>
+                <div className="d-flex justify-content-between mt-auto">
+                  <Link to={`/movies/${movie.id}`} className="btn btn-danger">
+                    Ver detalles
+                  </Link>
+                  <div>
+                    <button className="btn btn-danger me-2">
+                      <i className="fa-solid fa-star"></i>
+                    </button>
+                    <button className="btn btn-danger">
+                      <i className="fa-solid fa-clock"></i>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         ))}
       </div>
     </div>
+
   );
 };

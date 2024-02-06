@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { CommentSection } from "../component/commentSection";
 
 
 export const MovieInfo = () => {
@@ -21,7 +22,7 @@ export const MovieInfo = () => {
     };
 
     fetchMovieInfo();
-  }, [id, store.API_URL]);
+  }, [id]);
 
   return (
     <div className="movie-info-container">
@@ -36,37 +37,38 @@ export const MovieInfo = () => {
               />
             </div>
             <div className="col-md-8">
-              <div className="movie-details">
-                <div className="d-flex justify-content-between align-items-start mb-3">
-                  {/* Asegúrate de que el título no esté dentro del div d-flex */}
-                  <h2>{movieInfo.title}</h2>
-                  <Link to="/feed" className="btn btn-danger">
-                    <i class="fa-solid fa-backward"></i>
-                  </Link>
-                </div>
-                <p className="lead">{movieInfo.genre}</p>
-                <ul>
-                  <li>
-                    <strong>Title:</strong> {movieInfo.title}
-                  </li>
-                  <li>
-                    <strong>Genre:</strong> {movieInfo.genre}
-                  </li>
-                  <li>
-                    <strong>Length:</strong> {movieInfo.length}
-                  </li>
-                  <li>
-                    <strong>Release Date:</strong> {movieInfo.release_date}
-                  </li>
-                  <li>
-                    <strong>Actors:</strong> {movieInfo.actors}
-                  </li>
-                  <li>
-                    <strong>Description:</strong> {movieInfo.description}
-                  </li>
-                </ul>
+            <div className="movie-details">
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <h2 className="mb-0"><strong>{movieInfo.title}</strong></h2>
+                <Link to="/feed" className="btn btn-danger">
+                  <i className="fa-solid fa-backward me-2"></i>
+                  Back
+                </Link>
               </div>
+              <p className="lead">{movieInfo.genre}</p>
+              <ul className="list-unstyled">
+                <li className="mb-2">
+                  <strong>Title:</strong> {movieInfo.title}
+                </li>
+                <li className="mb-2">
+                  <strong>Genre:</strong> {movieInfo.genre}
+                </li>
+                <li className="mb-2">
+                  <strong>Length:</strong> {movieInfo.length}
+                </li>
+                <li className="mb-2">
+                  <strong>Release Date:</strong> {movieInfo.release_date}
+                </li>
+                <li className="mb-2">
+                  <strong>Actors:</strong> {movieInfo.actors}
+                </li>
+                <li>
+                  <strong>Description:</strong> {movieInfo.description}
+                </li>
+              </ul>
             </div>
+            <CommentSection movieId={id} />
+          </div>
           </div>
         </>
       ) : (

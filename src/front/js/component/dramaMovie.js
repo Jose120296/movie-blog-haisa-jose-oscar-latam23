@@ -1,50 +1,49 @@
-import React, { useContext, useEffect } from "react";
+// DramaMovies.js
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
-import { ComedyMovies } from "./comedyMovie";
-import { DramaMovies } from "./dramaMovie";
-import { ActionMovies } from "./actionMovie";
 
-export const MovieCard = () => {
+export const DramaMovies = () => {
   const { store, actions } = useContext(Context);
+  const [dramaMovies, setDramaMovies] = useState([]);
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchDramaMovies = async () => {
       try {
-        const response = await fetch(store.API_URL + "/api/movies");
+        const response = await fetch(store.API_URL + "api/movies");
         const data = await response.json();
         actions.setMovies(data);
+        setDramaMovies(data.filter(movie => movie.genre.includes("Drama")));
       } catch (error) {
         console.error("Error al obtener los datos de las películas:", error);
       }
     };
 
-    fetchMovies();
+    fetchDramaMovies();
   }, []);
 
-  // Verificar si los datos de la película están disponibles
-  if (!store.movies || store.movies.length === 0) {
-    console.log("No hay datos de películas disponibles");
-    return <div>No hay películas disponibles</div>;
+  if (!dramaMovies || dramaMovies.length === 0) {
+    console.log("No hay datos de películas de drama disponibles");
+    return <div>No hay películas de drama disponibles</div>;
   }
 
   return (
     <div className="container text-left mt-5">
       <h2>
-        <strong>All movies</strong>
+        <strong>Drama</strong>
       </h2>
       <div className="row flex-nowrap overflow-auto">
-        {store.movies.map((movie, index) => (
+        {dramaMovies.map((movie, index) => (
           <div className="col" style={{ marginRight: "10px", marginBottom: "10px" }} key={index}>
-            <div className="card h-100" style={{ width: "18rem" }}>
+            <div className="card" style={{ width: "18rem" }}>
               <img
                 src={movie.poster}
                 className="card-img-top"
                 alt="Película"
-                style={{ objectFit: "cover", width: "100%", height: "400px" }}
+                style={{ objectFit: "cover", height: "400px" }}
               />
-              <div className="card-body">
+              <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">{movie.genre}</p>
                 <p className="card-text">{movie.length} min</p>
@@ -66,12 +65,6 @@ export const MovieCard = () => {
           </div>
         ))}
       </div>
-      <br />
-      <ActionMovies />
-      <br/>
-      <ComedyMovies />
-      <br/>
-      <DramaMovies/>
     </div>
   );
 };
