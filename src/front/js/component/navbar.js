@@ -26,7 +26,7 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
-        <Link to="/" className="navbar-brand mb-2 h1 text-white" style={{ borderRadius: "5px", fontFamily: "Bebas Neue" }}>
+        <Link to="/feed" className="navbar-brand mb-2 h1 text-white" style={{ borderRadius: "5px", fontFamily: "Bebas Neue" }}>
           CINEVERSE
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@ export const Navbar = () => {
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={handleHomeclick}>Home</a>
+                <a className="nav-link" href="/feed" onClick={handleHomeclick}>Home</a>
               </li>   
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
