@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 
-const MOVIES_API_REQUEST = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc";
+const MOVIES_API_REQUEST = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=2&sort_by=popularity.desc";
 const GENRES_API_REQUEST = "https://api.themoviedb.org/3/genre/movie/list?language=en";
 const PROJECT_API = 'https://humble-goggles-694w7779xjx3xr9-3001.app.github.dev';
 
