@@ -104,7 +104,6 @@ def create_movie():
     length = data.get("length")
     poster = data.get("poster")
     release_date = data.get("release_date")
-    actors = data.get("actors")
     description= data.get("description")
 
     if not title or not genre or not length:
