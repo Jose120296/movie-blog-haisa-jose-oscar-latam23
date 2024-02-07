@@ -65,6 +65,7 @@ body {
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
+  background: #333;
 }
 
 .card:hover {
@@ -89,16 +90,6 @@ body {
   margin-bottom: 10px;
 }
 
-.btn-danger {
-  background-color: #dc3545;
-  border-color: #dc3545;
-  color: #fff;
-}
-
-.btn-danger:hover {
-  background-color: #bd2130;
-  border-color: #bd2130;
-}
 
 .flex-nowrap {
   flex-wrap: nowrap;

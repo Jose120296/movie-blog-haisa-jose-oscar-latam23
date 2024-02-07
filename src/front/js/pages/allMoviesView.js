@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
 export const GetGenresMovies = () => {
   const { store, actions } = useContext(Context);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [moviesPerPage] = useState(6);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -26,6 +28,14 @@ export const GetGenresMovies = () => {
     return <div>No hay películas disponibles</div>;
   }
 
+  // Obtener el índice del último y primer elemento de cada página
+  const indexOfLastMovie = currentPage * moviesPerPage;
+  const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
+  const currentMovies = store.movies.slice(indexOfFirstMovie, indexOfLastMovie);
+
+  // Cambiar de página
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="container-fluid text-left mt-45" style={{ width: "90vw", marginTop: "7rem" }}>
       <div className="d-flex justify-content-between">
@@ -36,14 +46,10 @@ export const GetGenresMovies = () => {
           View all movies
         </Link>
       </div>
-      <div className="row">
-        {store.movies.map((movie, index) => (
-          <div
-            className="col-md-4 mb-4"
-            style={{ }}
-            key={index}
-          >
-            <div className="card" style={{ width: "100%" }}>
+      <div className="row card-container">
+        {currentMovies.map((movie, index) => (
+          <div className="col-md-4 mb-4" style={{}} key={index}>
+            <div className="card" style={{ width: "100%", backgroundColor: "#5576B8" }}>
               <div className="row no-gutters">
                 <div className="col">
                   <img
@@ -55,20 +61,28 @@ export const GetGenresMovies = () => {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
-                    <h3 className="card-title">{movie.title}</h3>
-                    <p className="card-text">{movie.genre}</p>
-                    <p className="card-text">{movie.release_date}</p>                  
+                    <h2 className="card-title">
+                      <strong>{movie.title}</strong>
+                    </h2>
+                    <p className="card-text">
+                      <strong>Genre:</strong> {movie.genre}
+                    </p>
+                    <p className="card-text">
+                      <strong>Release Date:</strong> {movie.release_date}
+                    </p>
                     <p className="card-text">{movie.description}</p>
-                    <p className="card-text">{movie.length} min</p>
+                    <p className="card-text">
+                      <strong>Length:</strong> {movie.length} min
+                    </p>
                     <div className="d-flex justify-content-between mt-auto">
-                      <Link to={`/movies/${movie.id}`} className="btn btn-danger">
-                        Ver detalles
+                      <Link to={`/movies/${movie.id}`} className="btn btn-warning">
+                        View details
                       </Link>
                       <div>
-                        <button className="btn btn-danger me-2">
+                        <button className="btn btn-warning me-2">
                           <i className="fa-solid fa-star"></i>
                         </button>
-                        <button className="btn btn-danger">
+                        <button className="btn btn-warning">
                           <i className="fa-solid fa-clock"></i>
                         </button>
                       </div>
@@ -80,6 +94,54 @@ export const GetGenresMovies = () => {
           </div>
         ))}
       </div>
+
+      {/* Pagination */}
+      <nav>
+        <ul className="pagination justify-content-center mt-4">
+          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+            <button className="page-link" onClick={() => paginate(currentPage - 1)}>
+              Previous
+            </button>
+          </li>
+          {Array.from({ length: Math.ceil(store.movies.length / moviesPerPage) }, (_, i) => (
+            <li className={`page-item ${currentPage === i + 1 ? "active" : ""}`} key={i}>
+              <button className="page-link" onClick={() => paginate(i + 1)}>
+                {i + 1}
+              </button>
+            </li>
+          ))}
+          <li className={`page-item ${currentPage === Math.ceil(store.movies.length / moviesPerPage) ? "disabled" : ""}`}>
+            <button className="page-link" onClick={() => paginate(currentPage + 1)}>
+              Next
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <style>
+        {`
+            .card-title {
+                font-size: 1.75rem;
+                font-weight: bold;
+                margin-bottom: 1rem;
+            }
+
+            .card-text {
+                font-size: 1.0rem;
+                margin-bottom: 0.5rem;
+            }
+            .card-container {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+            }
+          
+            .col-md-4 {
+              flex-basis: calc(33.33% - 1rem);
+              margin-bottom: 2rem;
+            }
+        `}
+      </style>
     </div>
   );
 };

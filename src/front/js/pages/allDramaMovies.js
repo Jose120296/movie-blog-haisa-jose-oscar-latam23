@@ -45,7 +45,7 @@ export const GetDramaMovies = () => {
             style={{}}
             key={index}
           >
-            <div className="card" style={{ width: "100%" }}>
+            <div className="card" style={{ width: "100%", backgroundColor: "#5576B8" }}>
               <div className="row no-gutters">
                 <div className="col">
                   <img
@@ -57,20 +57,30 @@ export const GetDramaMovies = () => {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
-                    <h3 className="card-title">{movie.title}</h3>
-                    <p className="card-text">{movie.genre}</p>
-                    <p className="card-text">{movie.release_date}</p>
-                    <p className="card-text">{movie.description}</p>
-                    <p className="card-text">{movie.length} min</p>
+                    <h2 className="card-title">
+                      <strong>{movie.title}</strong>
+                    </h2>
+                    <p className="card-text">
+                      <strong>Genre:</strong> {movie.genre}
+                    </p>
+                    <p className="card-text">
+                      <strong>Release Date:</strong> {movie.release_date}
+                    </p>
+                    <p className="card-text">
+                      <strong>Length:</strong> {movie.length} min
+                    </p>
+                    <p className="card-text">
+                      <strong>Description:</strong> {movie.description}
+                    </p>
                     <div className="d-flex justify-content-between mt-auto">
-                      <Link to={`/movies/${movie.id}`} className="btn btn-danger">
+                      <Link to={`/movies/${movie.id}`} className="btn btn-warning">
                         View details
                       </Link>
                       <div>
-                        <button className="btn btn-danger me-2">
+                        <button className="btn btn-warning me-2">
                           <i className="fa-solid fa-star"></i>
                         </button>
-                        <button className="btn btn-danger">
+                        <button className="btn btn-warning">
                           <i className="fa-solid fa-clock"></i>
                         </button>
                       </div>
@@ -82,6 +92,23 @@ export const GetDramaMovies = () => {
           </div>
         ))}
       </div>
+      <style>
+        {`
+            .card-title {
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin-bottom: 1rem;
+                color: white;
+            }
+
+            .card-text {
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+                color: white;
+            }
+
+        `}
+      </style>
     </div>
   );
 };
