@@ -30,13 +30,18 @@ export const DramaMovies = () => {
 
   return (
     <div className="container text-left mt-5">
-      <h2>
-        <strong>Drama</strong>
-      </h2>
+      <div className="d-flex justify-content-between container fluid">  
+        <h2>
+          <strong>Drama</strong>
+        </h2>
+        <Link to={`/alldrama`} className="btn btn-danger">
+          View all drama movies
+        </Link>
+      </div>
       <div className="row flex-nowrap overflow-auto">
         {dramaMovies.map((movie, index) => (
           <div className="col" style={{ marginRight: "10px", marginBottom: "10px" }} key={index}>
-            <div className="card" style={{ width: "18rem" }}>
+            <div className="card h-100" style={{ width: "18rem" }}>
               <img
                 src={movie.poster}
                 className="card-img-top"
