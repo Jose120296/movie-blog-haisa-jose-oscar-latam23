@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+from yaml import serialize
+
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -51,8 +53,17 @@ class Movies(db.Model):
     favorites =  db.relationship("Favorite", back_populates="movie")
     comments =  db.relationship("Comment", back_populates="movie")
 
-
-
+    def serialize(self): 
+        return {
+            "id" : self.id,
+            "title": self.title,
+            "genre": self.genre,
+            "length": self.length,
+            "poster": self.poster,
+            "resealse_date": self.release_date,
+            "description": self.description
+        }
+    
 
 
     def __repr__(self):

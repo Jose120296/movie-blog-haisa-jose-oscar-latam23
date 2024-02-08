@@ -77,7 +77,7 @@ export const MovieCard = () => {
                     Ver detalles
                   </Link>
                   <div>
-                    <button className="btn btn-danger me-2">
+                    <button className="btn btn-danger me-2" onClick={() =>{actions.addFavorite(movie.id)} }>
                       <i className="fa-solid fa-star"></i>
                     </button>
                     <button className="btn btn-danger">

@@ -1,6 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+from multiprocessing.dummy import current_process
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Movies, Comment, Favorite
 from api.utils import generate_sitemap, APIException
@@ -85,7 +86,7 @@ def create_token():
         return jsonify({"msg": "User not found"}), 404
     if not check_password_hash(user.hashed_password, password):
         return jsonify({"msg": "Bad email or password"}), 401
-    access_token = create_access_token(identity=email)
+    access_token = create_access_token(identity=user.id)
     return jsonify(access_token=access_token)
 
 @api.route("/user_in", methods=["GET"])
@@ -174,10 +175,10 @@ def create_comment(movie_id):
     if not text:
         return jsonify({"message": "Missing required 'text' field"}), 400
 
-    current_user = get_jwt_identity()
+    user_id = get_jwt_identity()
 
     # Obtener el usuario actual
-    user = User.query.filter_by(email=current_user).first()
+    user = User.query.get(user_id).first()
 
     if not user:
         return jsonify({"message": "User not found"}), 404
@@ -224,21 +225,26 @@ def get_comments(movie_id):
 
 
 
-@api.route('/favorites', methods=['POST'])
-def add_favorite():
+@api.route('/movies/<int:movie_id>/favorites', methods=['POST'])
+@jwt_required()
+def add_favorite(movie_id):
 
-    favorito_nuevo = request.json
-    nuevo_favorito = Favorite(movie_id=favorito_nuevo['movie_id'], title=favorito_nuevo['title'])
+    user_id = get_jwt_identity()
+    nuevo_favorito = Favorite(movie_id= movie_id, user_id=user_id)
     db.session.add(nuevo_favorito)
     db.session.commit()
 
-    return jsonify({'message': 'Favorito añadido correctamente'})
+    return jsonify({'message': 'Favorito añadido correctamente'}), 201
 
-@api.route('/favorites/<int:user_id>', methods=['GET'])
-def get_favorites(user_id):
+@api.route('user/favorites', methods=['GET'])
+@jwt_required()
+def get_favorites():
     
+    user_id = get_jwt_identity()
     favoritos_usuario = Favorite.query.filter_by(user_id=user_id).all()
-    favoritos_serializados = [{'movie_id': favorito.movie_id, 'title': favorito.title} for favorito in favoritos_usuario]
+    favoritos_serializados = [{"id": favorito.id, "movie": favorito.movie.serialize()} for favorito in favoritos_usuario]
 
     return jsonify({'favorites': favoritos_serializados})
+
+
 
