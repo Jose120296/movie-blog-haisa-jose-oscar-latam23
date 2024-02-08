@@ -6,9 +6,10 @@ import { ComedyMovies } from "./comedyMovie";
 import { DramaMovies } from "./dramaMovie";
 import { ActionMovies } from "./actionMovie";
 
+
 export const MovieCard = () => {
   const { store, actions } = useContext(Context);
-  const [ratings, setRatings] = useState({});
+  const [movieRatings, setMovieRatings] = useState({});
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -25,7 +26,7 @@ export const MovieCard = () => {
   }, []);
 
   const handleRatingChange = (movieId, rating) => {
-    setRatings((prevRatings) => ({
+    setMovieRatings((prevRatings) => ({
       ...prevRatings,
       [movieId]: rating
     }));
@@ -49,7 +50,7 @@ export const MovieCard = () => {
       </div>
       <div className="row flex-nowrap overflow-auto">
         {store.movies.map((movie, index) => (
-          <div className="col" style={{ marginRight: "10px", marginBottom: "10px" }} key={index}>
+          <div className="movieCard mb-4 d-flex col" style={{ marginRight: "10px", marginBottom: "10px" }} key={index}>
             <div className="card h-100" style={{ width: "18rem" }}>
               <img
                 src={movie.poster}
@@ -61,18 +62,20 @@ export const MovieCard = () => {
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">{movie.genre}</p>
                 <p className="card-text">{movie.length} min</p>
+                <p className="card-text">{movie.release_date}</p>
                 <div className="rating">
-                  <p>Rate this movie:</p>
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
+                  {[1, 2, 3, 4, 5].map((value) => (
                     <span
                       key={value}
-                      className={`star ${ratings[movie.id] === value ? "selected" : ""}`}
+                      className={`star ${movieRatings[movie.id] && movieRatings[movie.id] >= value ? "selected" : ""}`}
                       onClick={() => handleRatingChange(movie.id, value)}
                     >
-                      {value}
+                      &#9733; 
                     </span>
                   ))}
-                <div className="d-flex justify-content-between mt-auto">
+                </div>
+              </div>
+                <div className="movieCardsButton d-flex justify-content-between mt-auto" style={{padding: "0 6px"}}>
                   <Link to={`/movies/${movie.id}`} className="btn btn-danger">
                     Ver detalles
                   </Link>
@@ -84,8 +87,6 @@ export const MovieCard = () => {
                       <i className="fa-solid fa-clock"></i>
                     </button>
                   </div>
-                </div>
-                </div>
               </div>
             </div>
           </div>
