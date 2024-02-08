@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export const GetActionMovies = () => {
   const { store, actions } = useContext(Context);
   const [actionMovies, setActionMovies] = useState([]);
+  const [movieRatings, setMovieRatings] = useState({});
 
   useEffect(() => {
     const fetchActionMovies = async () => {
@@ -21,6 +22,13 @@ export const GetActionMovies = () => {
 
     fetchActionMovies();
   }, []);
+
+  const handleRatingChange = (movieId, rating) => {
+    setMovieRatings((prevRatings) => ({
+      ...prevRatings,
+      [movieId]: rating
+    }));
+  };
 
   // Verificar si los datos de la película están disponibles
   if (!actionMovies || actionMovies.length === 0) {
@@ -72,6 +80,17 @@ export const GetActionMovies = () => {
                     <p className="card-text">
                       <strong>Description:</strong> {movie.description}
                     </p>
+                    <div className="rating">
+                      {[1, 2, 3, 4, 5].map((value) => (
+                        <span
+                          key={value}
+                          className={`star ${movieRatings[movie.id] && movieRatings[movie.id] >= value ? "selected" : ""}`}
+                          onClick={() => handleRatingChange(movie.id, value)}
+                        >
+                          &#9733; 
+                        </span>
+                      ))}
+                    </div>
                     <div className="d-flex justify-content-between mt-auto">
                       <Link to={`/movies/${movie.id}`} className="btn btn-warning">
                         View details
