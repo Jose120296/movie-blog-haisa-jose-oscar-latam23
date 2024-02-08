@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			API_URL: process.env.BACKEND_URL,
 			token: null,
 			message: null,
+			favorites: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -157,6 +158,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  method: "GET",
 				  headers: {
 					"Content-Type": "application/json",
+
 				  },
 				};
 			  
@@ -183,9 +185,75 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert("Error getting comments. Please try again.");
 					return false;
 				}
-			  },
+			},
+			addFavorite: async (movieId) => {
+				const store = getStore();
+
+				const opts = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${store.token}`
+					},
+					body: JSON.stringify("")
+				};
+
+				try {
+					const resp = await fetch(`${store.API_URL}api/movies/${movieId}/favorites`, opts);
+					
+					if (resp.status !== 201) {
+						const errorData = await resp.json();
+						console.error("Error adding favorites:", errorData);
+
+						alert("There has been some error");
+						return false;
+					}
+
+					//
+					getActions().getFavorites()
+
+
+					return true;
+				} catch (error) {
+					console.error("Fatal error adding comment:", error);
+					return false;
+				}
+			},
+			getFavorites: async () => {
+				const store = getStore();
 			  
+				const opts = {
+				  method: "GET",
+				  headers: {
+					"Content-Type": "application/json",
+					"Authorization": `Bearer ${store.token}`
+				  },
+				};
 			  
+				try {
+				  const resp = await fetch(`${store.API_URL}api/user/favorites`, opts);
+			  
+				  if (resp.status !== 200) {
+					const errorData = await resp.json();
+					console.error("Error getting favorites:", errorData);
+					alert("There has been some error");
+					return false;
+				  }
+			  
+				  const data = await resp.json();
+				  console.log(data)
+			  
+				  // Actualizar los comentarios en el estado global
+				  setStore({ favorites: data });
+				  console.log(store.favorites);
+				  return true;
+				} catch (error) {
+					console.error("Fatal error getting comments:", error);
+					// Puedes agregar un alert o manejar el error de otra manera
+					alert("Error getting comments. Please try again.");
+					return false;
+				}
+			},
 		}
 	};
 };

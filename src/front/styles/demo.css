@@ -1,201 +1,168 @@
 /* fallback */
 @font-face {
-    font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
-    src: url(https://fonts.gstatic.com/s/materialicons/v41/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
-  }
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v41/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
+}
 
-  
-  .material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    -webkit-font-smoothing: antialiased;
-  }
-  
-  html *{
-      -webkit-font-smoothing: antialiased;
-  }
-  
-  /* typography */
-  
-  h1,
-  .h1 {
-    font-size: 3.3125rem;
-    line-height: 1.15em;
-  }
-  
-  h2,
-  .h2 {
-    font-size: 2.25rem;
-    line-height: 1.5em;
-  }
-  
-  h3,
-  .h3 {
-    font-size: 1.5625rem;
-    line-height: 1.4em;
-  }
-  
-  h4 {
-    font-size: 1.125rem;
-    line-height: 1.5em;
-  }
-  
-  h5,
-  .h5 {
-    font-size: 1.0625rem;
-    line-height: 1.55em;
-    margin-bottom: 15px;
-  }
-  
-  h6,
-  .h6 {
-    font-size: 0.75rem;
-    text-transform: uppercase;
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* typography */
+
+
+
+
+h6,
+.h6 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+p {
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+
+
+.profile-page .page-header {
+    height: 380px;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: flex;
+    align-items: center;
+}
+
+.header-filter:before {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    left: 0;
+    top: 0;
+    content: "";
+    background: rgba(0,0,0,.5);
+}
+
+.main-raised {
+    margin: -60px 30px 0;
+    border-radius: 6px;
+    box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+
+.main {
+    background: #FFF;
+    position: relative;
+    z-index: 3;
+}
+
+.profile-page .profile {
+    text-align: center;
+}
+
+.profile-page .profile img {
+    max-width: 160px;
+    width: 100%;
+    margin: 0 auto;
+    -webkit-transform: translate3d(0,-50%,0);
+    -moz-transform: translate3d(0,-50%,0);
+    -o-transform: translate3d(0,-50%,0);
+    -ms-transform: translate3d(0,-50%,0);
+    transform: translate3d(0,-50%,0);
+}
+
+
+
+.title {
+    margin-top: 30px;
+    margin-bottom: 25px;
+    min-height: 32px;
+    color: #3C4858;
+    font-weight: 700;
+    font-family: "Roboto Slab","Times New Roman",serif;
+}
+
+.profile-page .description {
+    margin: 1.071rem auto 0;
+    max-width: 600px;
+    color: #999;
+    font-weight: 300;
+}
+
+.profile-page .profile .name{
+  margin-top: -80px;
+}
+
+.profile-page .profile-tabs {
+    margin-top: 4.284rem;
+}
+
+
+
+
+
+.nav-pills .nav-item .nav-link {
+    line-height: 24px;
+    font-size: 12px;
     font-weight: 500;
-  }
-  
-  p {
-    font-size: 14px;
-    margin: 0 0 10px;
-  }
-  
-  
-  a .material-icons {
-      vertical-align: middle;
-  }
-  
-  
-  .profile-page .page-header {
-      height: 380px;
-      background-size: cover;
-      background-position: center;
-      margin: 0;
-      padding: 0;
-      border: 0;
-      display: flex;
-      align-items: center;
-  }
-  
-  .header-filter:before {
-      position: absolute;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      display: block;
-      left: 0;
-      top: 0;
-      content: "";
-      background: rgba(0,0,0,.5);
-  }
-  
-  .main-raised {
-      margin: -60px 30px 0;
-      border-radius: 6px;
-      box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
-  }
-  
-  .main {
-      background: #FFF;
-      position: relative;
-      z-index: 3;
-  }
-  
-  .profile-page .profile {
-      text-align: center;
-  }
-  
-  .profile-page .profile img {
-      max-width: 160px;
-      width: 100%;
-      margin: 0 auto;
-      -webkit-transform: translate3d(0,-50%,0);
-      -moz-transform: translate3d(0,-50%,0);
-      -o-transform: translate3d(0,-50%,0);
-      -ms-transform: translate3d(0,-50%,0);
-      transform: translate3d(0,-50%,0);
-  }
-  
-  
-  
-  .title {
-      margin-top: 30px;
-      margin-bottom: 25px;
-      min-height: 32px;
-      color: #3C4858;
-      font-weight: 700;
-      font-family: "Roboto Slab","Times New Roman",serif;
-  }
-  
-  .profile-page .description {
-      margin: 1.071rem auto 0;
-      max-width: 600px;
-      color: #999;
-      font-weight: 300;
-  }
-  
-  .profile-page .profile .name{
-    margin-top: -80px;
-  }
-  
-  .profile-page .profile-tabs {
-      margin-top: 4.284rem;
-  }
-  
- 
-  
- 
-  
-  .nav-pills .nav-item .nav-link {
-      line-height: 24px;
-      font-size: 12px;
-      font-weight: 500;
-      min-width: 100px;
-      color: #555;
-      transition: all .3s;
-      border-radius: 30px;
-      padding: 10px 15px;
-      text-align: center;
-  }
-  
-  
-  .nav-pills .nav-item i {
-      display: block;
-      font-size: 30px;
-      padding: 15px 0;
-  }
-  
+    min-width: 100px;
+    color: #555;
+    transition: all .3s;
+    border-radius: 30px;
+    padding: 10px 15px;
+    text-align: center;
+}
 
- 
-  /* buttons */
-  .btn {
-      position: relative;
-      padding: 12px 30px;
-      margin: .3125rem 1px;
-      font-size: .75rem;
-      font-weight: 400;
-      line-height: 1.428571;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0;
-      cursor: pointer;
-      background-color: transparent;
-      border: 0;
-      border-radius: .2rem;
-      outline: 0;
-      transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1);
-      will-change: box-shadow,transform;
-  }
-  
-  
-  
+
+.nav-pills .nav-item i {
+    display: block;
+    font-size: 30px;
+    padding: 15px 0;
+}
+
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.fotoAvatar {
+    width: 10rem;
+    height: 10rem;
+}
+
+.fotoAvatar > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.iconosFav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
