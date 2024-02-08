@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
@@ -8,9 +8,10 @@ import { ActionMovies } from "./actionMovie";
 
 export const MovieCard = () => {
   const { store, actions } = useContext(Context);
+  const [ratings, setRatings] = useState({});
 
- useEffect(() => {
-     const fetchMovies = async () => {
+  useEffect(() => {
+    const fetchMovies = async () => {
       try {
         const response = await fetch(store.API_URL + "api/movies");
         const data = await response.json();
@@ -23,12 +24,18 @@ export const MovieCard = () => {
     fetchMovies();
   }, []);
 
+  const handleRatingChange = (movieId, rating) => {
+    setRatings((prevRatings) => ({
+      ...prevRatings,
+      [movieId]: rating
+    }));
+  };
+
   // Verificar si los datos de la película están disponibles
   if (!store.movies || store.movies.length === 0) {
     console.log("No hay datos de películas disponibles");
     return <div>No hay películas disponibles</div>;
   }
-
 
   return (
     <div className="container text-left mt-5">
@@ -54,6 +61,17 @@ export const MovieCard = () => {
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">{movie.genre}</p>
                 <p className="card-text">{movie.length} min</p>
+                <div className="rating">
+                  <p>Rate this movie:</p>
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
+                    <span
+                      key={value}
+                      className={`star ${ratings[movie.id] === value ? "selected" : ""}`}
+                      onClick={() => handleRatingChange(movie.id, value)}
+                    >
+                      {value}
+                    </span>
+                  ))}
                 <div className="d-flex justify-content-between mt-auto">
                   <Link to={`/movies/${movie.id}`} className="btn btn-danger">
                     Ver detalles
@@ -66,6 +84,7 @@ export const MovieCard = () => {
                       <i className="fa-solid fa-clock"></i>
                     </button>
                   </div>
+                </div>
                 </div>
               </div>
             </div>
