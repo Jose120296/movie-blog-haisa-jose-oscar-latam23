@@ -105,7 +105,6 @@ def create_movie():
     length = data.get("length")
     poster = data.get("poster")
     release_date = data.get("release_date")
-    actors = data.get("actors")
     description= data.get("description")
 
     if not title or not genre or not length:
@@ -208,16 +207,15 @@ def get_comments(movie_id):
     if movie is None:
         return jsonify({'error': 'Movie not found'}), 404
 
-    comments = Comment.query.filter_by(movie_id=movie.id).all()
+    comments = movie.comments
 
     result = []
     for comment in comments:
-        user = User.query.get(comment.user_id)
         comment_data = {
             "id": comment.id,
             "text": comment.text,
             "user_id": comment.user_id,
-            "user_name": user.user_name,  # Agrega el nombre de usuario al resultado
+            "user_name": comment.user.user_name,  # Agrega el nombre de usuario al resultado
             "created_at": comment.created_at.isoformat()
         }
         result.append(comment_data)

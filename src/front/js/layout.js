@@ -7,12 +7,17 @@ import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
+import { GetGenresMovies } from "./pages/allMoviesView";
+import { GetActionMovies } from "./pages/allActionsMovies";
+import { GetComedyMovies } from "./pages/allComedyMovies";
+import { GetDramaMovies } from "./pages/allDramaMovies";
 import { Feed } from "./pages/feed";
 import { MovieInfo } from "./pages/movieInfo"; 
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { ActionMovies } from "./component/actionMovie";
 
 //create your first component
 const Layout = () => {
@@ -33,6 +38,10 @@ const Layout = () => {
                         <Route element={<Login />} path="/login" />
                         <Route element={<Signup />} path="/signup" />
                         <Route element={<Feed />} path="/feed" />
+                        <Route element={<GetGenresMovies />} path="/allmovies" />
+                        <Route element={<GetActionMovies />} path="allactions" />
+                        <Route element={<GetComedyMovies />} path="allcomedy" />
+                        <Route element={<GetDramaMovies />} path="alldrama" />
                         <Route element={<MovieInfo />} path="/movies/:id" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
