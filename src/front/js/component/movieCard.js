@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ComedyMovies } from "./comedyMovie";
 import { DramaMovies } from "./dramaMovie";
 import { ActionMovies } from "./actionMovie";
+import { Card } from "./card"
 
 
 export const MovieCard = () => {
@@ -38,6 +39,8 @@ export const MovieCard = () => {
     return <div>No hay películas disponibles</div>;
   }
 
+  
+
   return (
     <div className="container text-left mt-5">
       <div className="d-flex justify-content-between container fluid">  
@@ -49,48 +52,11 @@ export const MovieCard = () => {
         </Link>
       </div>
       <div className="row flex-nowrap overflow-auto">
-        {store.movies.map((movie, index) => (
-          <div className="movieCard mb-4 d-flex col" style={{ marginRight: "10px", marginBottom: "10px" }} key={index}>
-            <div className="card h-100" style={{ width: "18rem" }}>
-              <img
-                src={movie.poster}
-                className="card-img-top"
-                alt="Película"
-                style={{ objectFit: "cover", width: "100%", height: "400px" }}
-              />
-              <div className="card-body">
-                <h5 className="card-title">{movie.title}</h5>
-                <p className="card-text">{movie.genre}</p>
-                <p className="card-text">{movie.length} min</p>
-                <p className="card-text">{movie.release_date}</p>
-                <div className="rating">
-                  {[1, 2, 3, 4, 5].map((value) => (
-                    <span
-                      key={value}
-                      className={`star ${movieRatings[movie.id] && movieRatings[movie.id] >= value ? "selected" : ""}`}
-                      onClick={() => handleRatingChange(movie.id, value)}
-                    >
-                      &#9733; 
-                    </span>
-                  ))}
-                </div>
-              </div>
-                <div className="movieCardsButton d-flex justify-content-between mt-auto" style={{padding: "0 6px"}}>
-                  <Link to={`/movies/${movie.id}`} className="btn btn-danger">
-                    Ver detalles
-                  </Link>
-                  <div>
-                    <button className="btn btn-danger me-2" onClick={() =>{actions.addFavorite(movie.id)} }>
-                      <i className="fa-solid fa-star"></i>
-                    </button>
-                    <button className="btn btn-danger">
-                      <i className="fa-solid fa-clock"></i>
-                    </button>
-                  </div>
-              </div>
-            </div>
-          </div>
-        ))}
+        {store.movies.map((movie, index) => {
+          
+          return(
+          <Card movie={movie} key={index}/> 
+        )})}
       </div>
       <br />
       <ActionMovies />

@@ -1,0 +1,10 @@
+.card.horizontal{
+    max-height: 18 rem;
+}
+.card-text.horizontal{
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    max-width: 350px;
+    max-height: 100px;
+}
