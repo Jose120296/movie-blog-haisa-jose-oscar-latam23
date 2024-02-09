@@ -58,7 +58,7 @@ export const GetGenresMovies = () => {
       <div className="row card-container">
         {currentMovies.map((movie, index) => (
           <div className="col-md-4 mb-4" style={{}} key={index}>
-            <div className="card" style={{ width: "100%", backgroundColor: "#5576B8" }}>
+            <div className="card horizontal" style={{ width: "100%", backgroundColor: "#5576B8" }}>
               <div className="row no-gutters">
                 <div className="col">
                   <img
@@ -79,7 +79,7 @@ export const GetGenresMovies = () => {
                     <p className="card-text">
                       <strong>Release Date:</strong> {movie.release_date}
                     </p>
-                    <p className="card-text">{movie.description}</p>
+                    <p className="card-text horizontal">{movie.description}</p>
                     <p className="card-text">
                       <strong>Length:</strong> {movie.length} min
                     </p>
@@ -138,30 +138,7 @@ export const GetGenresMovies = () => {
         </ul>
       </nav>
 
-      <style>
-        {`
-            .card-title {
-                font-size: 1.75rem;
-                font-weight: bold;
-                margin-bottom: 1rem;
-            }
-
-            .card-text {
-                font-size: 1.0rem;
-                margin-bottom: 0.5rem;
-            }
-            .card-container {
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: space-between;
-            }
-          
-            .col-md-4 {
-              flex-basis: calc(33.33% - 1rem);
-              margin-bottom: 2rem;
-            }
-        `}
-      </style>
+      
     </div>
   );
 };
