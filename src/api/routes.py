@@ -246,5 +246,14 @@ def get_favorites():
 
     return jsonify({'favorites': favoritos_serializados})
 
+@api.route('user/favorites', methods=['GET'])
+@jwt_required()
+def delete_favorites():
+    
 
+    user_id = get_jwt_identity()
+    favoritos_usuario = Favorite(movie_id= movie_id, user_id=user_id)
+    db.session.delete(favoritos_usuario)
+    db.session.commit()
 
+    return jsonify({'message': 'Favorito eliminado correctamente'}), 201

@@ -221,7 +221,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getFavorites: async () => {
 				const store = getStore();
-			  
+			  console.log (store.token);
 				const opts = {
 				  method: "GET",
 				  headers: {
@@ -244,7 +244,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  console.log(data)
 			  
 				  // Actualizar los comentarios en el estado global
-				  setStore({ favorites: data });
+				  setStore({ favorites: data ["favorites"] });
 				  console.log(store.favorites);
 				  return true;
 				} catch (error) {
