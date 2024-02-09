@@ -257,3 +257,37 @@ def delete_favorites():
     db.session.commit()
 
     return jsonify({'message': 'Favorito eliminado correctamente'}), 201
+
+@api.route('/movies/<int:movie_id>/see_laters', methods=['POST'])
+@jwt_required()
+def add_see_later(movie_id):
+
+    user_id = get_jwt_identity()
+    new_see_later = SeeLater(movie_id=movie_id, user_id=user_id)
+    db.session.add(new_see_later)
+    db.session.commit()
+
+    return jsonify({'message': 'Película añadida a "Ver después" correctamente'}), 201
+
+@api.route('/user/see_laters', methods=['GET'])
+@jwt_required()
+def get_see_laters():
+
+    user_id = get_jwt_identity()
+    see_laters_user = SeeLater.query.filter_by(user_id=user_id).all()
+    see_laters_serialized = [{"id": see_later.id, "movie": see_later.movie.serialize()} for see_later in see_laters_user]
+
+    return jsonify({'see_laters': see_laters_serialized})
+
+@api.route('/user/see_laters', methods=['DELETE'])
+@jwt_required()
+def delete_see_laters(movie_id):
+
+    user_id = get_jwt_identity()
+    see_later_to_delete = SeeLater.query.filter_by(movie_id=movie_id, user_id=user_id).first()
+    if see_later_to_delete:
+        db.session.delete(see_later_to_delete)
+        db.session.commit()
+        return jsonify({'message': 'Película eliminada de "Ver después" correctamente'}), 200
+    else:
+        return jsonify({'error': 'Película no encontrada en "Ver después"'}), 404
