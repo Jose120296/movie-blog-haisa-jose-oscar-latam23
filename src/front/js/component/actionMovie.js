@@ -64,12 +64,48 @@ export const ActionMovies = () => {
         </Link>
       </div>
       <div className="row flex-nowrap overflow-auto">
-        {actionMovies.map((movie, index) => {
-          
-          return(
-          <Card movie={movie} key={index}/> 
-        )})}
-        
+        {actionMovies.map((movie, index) => (
+            <div className="col" style={{ marginRight: "10px", marginBottom: "10px" }} key={index}>
+              <div className="card h-100" style={{ width: "18rem" }}>
+                <img
+                  src={movie.poster}
+                  className="card-img-top"
+                  alt="Película"
+                  style={{ objectFit: "cover", height: "400px", width:"100%" }}
+                />
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title">{movie.title}</h5>
+                  <p className="card-text">{movie.genre}</p>
+                  <p className="card-text">{movie.length} min</p>
+                  <p className="card-text">{movie.release_date}</p>
+                  <div className="rating">
+                    {[1, 2, 3, 4, 5].map((value) => (
+                      <span
+                        key={value}
+                        className={`star ${movieRatings[movie.id] && movieRatings[movie.id] >= value ? "selected" : ""}`}
+                        onClick={() => handleRatingChange(movie.id, value)}
+                      >
+                        &#9733; 
+                      </span>
+                    ))}
+                  </div>
+                  <div className="d-flex justify-content-between mt-auto">
+                    <Link to={`/movies/${movie.id}`} className="btn btn-danger">
+                      Ver detalles
+                    </Link>
+                    <div>
+                      <button className="btn btn-danger me-2">
+                        <i className="fa-solid fa-star"></i>
+                      </button>
+                      <button className="btn btn-danger">
+                        <i className="fa-solid fa-clock"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );
