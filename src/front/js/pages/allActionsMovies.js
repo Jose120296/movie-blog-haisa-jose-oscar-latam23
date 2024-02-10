@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 
 export const GetActionMovies = () => {
   const { store, actions } = useContext(Context);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [moviesPerPage] = useState(9);
   const [actionMovies, setActionMovies] = useState([]);
+  const [movieRatings, setMovieRatings] = useState({});
 
   useEffect(() => {
     const fetchActionMovies = async () => {
@@ -35,24 +38,31 @@ export const GetActionMovies = () => {
     return <div>No hay películas de acción disponibles</div>;
   }
 
+  const indexOfLastMovie = currentPage * moviesPerPage;
+  const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
+  const currentMovies = actionMovies.slice(indexOfFirstMovie, indexOfLastMovie);
+
+  // Cambiar de página
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="container-fluid text-left mt-45" style={{ width: "90vw", marginTop: "7rem" }}>
       <div className="d-flex justify-content-between">
         <h2>
-          <strong>Action movies</strong>
+          <strong>Actions Movies</strong>
         </h2>
         <Link to={`/feed`} className="btn btn-danger">
           View all movies
         </Link>
       </div>
-      <div className="row">
-        {actionMovies.map((movie, index) => (
+      <div className="row card-container">
+        {currentMovies.map((movie, index) => (
           <div
             className="col-md-4 mb-4"
             style={{}}
             key={index}
           >
-            <div className="card" style={{ width: "100%" }}>
+            <div className="card horizontal" style={{ width: "100%", backgroundColor: "#5576B8" }}>
               <div className="row no-gutters">
                 <div className="col">
                   <img
@@ -74,10 +84,10 @@ export const GetActionMovies = () => {
                       <strong>Release Date:</strong> {movie.release_date}
                     </p>
                     <p className="card-text">
-                      <strong>Length:</strong> {movie.length} min
+                      <strong>Description:</strong> {movie.description}
                     </p>
                     <p className="card-text">
-                      <strong>Description:</strong> {movie.description}
+                      <strong>Length:</strong> {movie.length} min
                     </p>
                     <div className="rating">
                       {[1, 2, 3, 4, 5].map((value) => (
@@ -110,24 +120,27 @@ export const GetActionMovies = () => {
           </div>
         ))}
       </div>
-      <style>
-        {`
-            .card {
-                background-color: #5576B8;
-            }
-
-            .card-title {
-                font-size: 1.2rem;
-                font-weight: bold;
-                margin-bottom: 1rem;
-            }
-
-            .card-text {
-                font-size: 0.9rem;
-                margin-bottom: 0.5rem;
-            }
-        `}
-      </style>
+      <nav>
+        <ul className="pagination justify-content-center mt-4">
+          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+            <button className="page-link" onClick={() => paginate(currentPage - 1)}>
+              Previous
+            </button>
+          </li>
+          {Array.from({ length: Math.ceil(actionMovies.length / moviesPerPage) }, (_, i) => (
+            <li className={`page-item ${currentPage === i + 1 ? "active" : ""}`} key={i}>
+              <button className="page-link" onClick={() => paginate(i + 1)}>
+                {i + 1}
+              </button>
+            </li>
+          ))}
+          <li className={`page-item ${currentPage === Math.ceil(actionMovies.length / moviesPerPage) ? "disabled" : ""}`}>
+            <button className="page-link" onClick={() => paginate(currentPage + 1)}>
+              Next
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };
