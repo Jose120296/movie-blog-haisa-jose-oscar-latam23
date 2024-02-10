@@ -12,7 +12,7 @@ class User(db.Model):
     hashed_password = db.Column(db.String(255), nullable=False)
     comments =  db.relationship("Comment", back_populates="user")
     favorites =  db.relationship("Favorite", back_populates="user")
-    see_laters = db.relationship("SeeLater", back_populates="user")
+    
     def __repr__(self):
         return f'<User {self.email}>'
 
@@ -54,7 +54,7 @@ class Movies(db.Model):
     description = db.Column(db.Text, nullable=True)
     favorites =  db.relationship("Favorite", back_populates="movie")
     comments =  db.relationship("Comment", back_populates="movie")
-    see_laters = db.relationship("SeeLater", back_populates="movie")
+    
 
    
 
