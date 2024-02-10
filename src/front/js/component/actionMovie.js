@@ -42,11 +42,10 @@ export const ActionMovies = () => {
       </div>
       <div className="row flex-nowrap overflow-auto">
         {actionMovies.map((movie, index) => {
-          
           return(
           <Card movie={movie} key={index}/> 
         )})}
-        
+
       </div>
     </div>
   );
