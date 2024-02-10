@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from multiprocessing.dummy import current_process
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Movies, Comment, Favorite
+from api.models import db, User, Movies, Comment, Favorite, Seelater
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
@@ -248,7 +248,7 @@ def get_favorites():
 
 @api.route('user/favorites', methods=['GET'])
 @jwt_required()
-def delete_favorites():
+def delete_favorites(movie_id):
     
 
     user_id = get_jwt_identity()
@@ -258,3 +258,36 @@ def delete_favorites():
 
     return jsonify({'message': 'Favorito eliminado correctamente'}), 201
 
+
+@api.route('/movies/<int:movie_id>/seelater', methods=['POST'])
+@jwt_required()
+def add_seelater(movie_id):
+
+    user_id = get_jwt_identity()
+    nuevo_seelater = Seelater(movie_id= movie_id, user_id=user_id)
+    db.session.add(nuevo_seelater)
+    db.session.commit()
+
+    return jsonify({'message': 'Ver luego fue añadido correctamente'}), 201
+
+@api.route('user/seelater', methods=['GET'])
+@jwt_required()
+def get_seelater():
+    
+    user_id = get_jwt_identity()
+    seelater_usuario = Seelater.query.filter_by(user_id=user_id).all()
+    seelater_serializados = [{"id": seelater.id, "movie": seelater.movie.serialize()} for seelaters in seelater_usuario]
+
+    return jsonify({'seelater': seelater_serializados})
+
+@api.route('user/seelater', methods=['GET'])
+@jwt_required()
+def delete_seelater(movie_id):
+    
+
+    user_id = get_jwt_identity()
+    seelater_usuario = Seelater(movie_id= movie_id, user_id=user_id)
+    db.session.delete(seelater_usuario)
+    db.session.commit()
+
+    return jsonify({'message': 'Seelater eliminado correctamente'}), 201

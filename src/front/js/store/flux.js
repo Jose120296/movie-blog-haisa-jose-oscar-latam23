@@ -132,7 +132,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				try {
-					const resp = await fetch(`${store.API_URL}api/movies/${movieId}/comments`, opts);
+					const resp = await fetch(`${store.API_URL}/api/movies/${movieId}/comments`, opts);
 					
 					if (resp.status !== 201) {
 						const errorData = await resp.json();
@@ -163,7 +163,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			  
 				try {
-				  const resp = await fetch(`${store.API_URL}api/movies/${movieId}/comments`, opts);
+				  const resp = await fetch(`${store.API_URL}/api/movies/${movieId}/comments`, opts);
 			  
 				  if (resp.status !== 200) {
 					const errorData = await resp.json();
@@ -199,7 +199,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				try {
-					const resp = await fetch(`${store.API_URL}api/movies/${movieId}/favorites`, opts);
+					const resp = await fetch(`${store.API_URL}/api/movies/${movieId}/favorites`, opts);
 					
 					if (resp.status !== 201) {
 						const errorData = await resp.json();
@@ -231,7 +231,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			  
 				try {
-				  const resp = await fetch(`${store.API_URL}api/user/favorites`, opts);
+				  const resp = await fetch(`${store.API_URL}/api/user/favorites`, opts);
 			  
 				  if (resp.status !== 200) {
 					const errorData = await resp.json();
@@ -255,6 +255,76 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			addSeelater: async (movieId) => {
+				const store = getStore();
+
+				const opts = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${store.token}`
+					},
+					body: JSON.stringify("")
+				};
+
+				try {
+					const resp = await fetch(`${store.API_URL}/api/movies/${movieId}/seelater`, opts);
+					
+					if (resp.status !== 201) {
+						const errorData = await resp.json();
+						console.error("Error adding seelater:", errorData);
+
+						alert("There has been some error");
+						return false;
+					}
+
+					//
+					getActions().getSeelater()
+
+
+					return true;
+				} catch (error) {
+					console.error("Fatal error adding seelater:", error);
+					return false;
+				}
+
+			},
+
+			getSeelater: async () => {
+				const store = getStore();
+			  console.log (store.token);
+				const opts = {
+				  method: "GET",
+				  headers: {
+					"Content-Type": "application/json",
+					"Authorization": `Bearer ${store.token}`
+				  },
+				};
+			  
+				try {
+				  const resp = await fetch(`${store.API_URL}/api/user/seelater`, opts);
+			  
+				  if (resp.status !== 200) {
+					const errorData = await resp.json();
+					console.error("Error getting seelater:", errorData);
+					alert("There has been some error");
+					return false;
+				  }
+			  
+				  const data = await resp.json();
+				  console.log(data)
+			  
+				  // Actualizar los comentarios en el estado global
+				  setStore({ seelater: data ["seelater"] });
+				  console.log(store.seelater);
+				  return true;
+				} catch (error) {
+					console.error("Fatal error getting seelater", error);
+					// Puedes agregar un alert o manejar el error de otra manera
+					alert("Error getting seelater. Please try again.");
+					return false;
+				}
+			},
 		},
 		
 	};

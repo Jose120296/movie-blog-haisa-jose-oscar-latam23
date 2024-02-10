@@ -37,7 +37,7 @@ export const Navbar = () => {
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item">
-                <a className="nav-link" href="/feed" onClick={handleHomeclick}>Home</a>
+                <Link className="nav-link" to="/feed" >Home</Link>
               </li>   
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

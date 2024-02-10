@@ -12,7 +12,7 @@ class User(db.Model):
     hashed_password = db.Column(db.String(255), nullable=False)
     comments =  db.relationship("Comment", back_populates="user")
     favorites =  db.relationship("Favorite", back_populates="user")
-    
+    seelater =  db.relationship("Seelater", back_populates="user")
     def __repr__(self):
         return f'<User {self.email}>'
 
@@ -28,6 +28,13 @@ class Favorite(db.Model):
     movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'), nullable=False)
     user= db.relationship("User",back_populates="favorites")
     movie= db.relationship("Movies",back_populates="favorites")
+
+class Seelater(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'), nullable=False)
+    user= db.relationship("User",back_populates="seelater")
+    movie= db.relationship("Movies",back_populates="seelater")
 
 
 # class Parent(Base):
@@ -54,7 +61,7 @@ class Movies(db.Model):
     description = db.Column(db.Text, nullable=True)
     favorites =  db.relationship("Favorite", back_populates="movie")
     comments =  db.relationship("Comment", back_populates="movie")
-    
+    seelater =  db.relationship("Seelater", back_populates="movie")
 
    
 
