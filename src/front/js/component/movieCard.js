@@ -14,8 +14,9 @@ export const MovieCard = () => {
 
   useEffect(() => {
     const fetchMovies = async () => {
+      console.log(store.API_URL)
       try {
-        const response = await fetch(store.API_URL + "api/movies");
+        const response = await fetch(store.API_URL + "/api/movies");
         const data = await response.json();
         actions.setMovies(data);
       } catch (error) {
@@ -26,12 +27,7 @@ export const MovieCard = () => {
     fetchMovies();
   }, []);
 
-  const handleRatingChange = (movieId, rating) => {
-    setMovieRatings((prevRatings) => ({
-      ...prevRatings,
-      [movieId]: rating
-    }));
-  };
+
 
   // Verificar si los datos de la película están disponibles
   if (!store.movies || store.movies.length === 0) {

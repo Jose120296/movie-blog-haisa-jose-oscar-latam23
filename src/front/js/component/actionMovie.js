@@ -8,12 +8,11 @@ import { Card } from "./card"
 export const ActionMovies = () => {
   const { store, actions } = useContext(Context);
   const [actionMovies, setActionMovies] = useState([]);
-  const [movieRatings, setMovieRatings] = useState({});
 
   useEffect(() => {
     const fetchActionMovies = async () => {
       try {
-        const response = await fetch(store.API_URL + "api/movies");
+        const response = await fetch(store.API_URL + "/api/movies");
         const data = await response.json();
         actions.setMovies(data);
         setActionMovies(data.filter(movie => movie.genre.includes("Action")));
@@ -24,29 +23,7 @@ export const ActionMovies = () => {
     fetchActionMovies();
   }, []);
 
-  const handleRatingChange = (movieId, rating) => {
-    setMovieRatings((prevRatings) => ({
-      ...prevRatings,
-      [movieId]: rating
-    }));
-  };
-
-  const movieDate = new Date(movie.release_date)
-  const mesesDelAño = [
-      "Enero",
-      "Febrero",
-      "Marzo",
-      "Abril",
-      "Mayo",
-      "Junio",
-      "Julio",
-      "Agosto",
-      "Septiembre",
-      "Octubre",
-      "Noviembre",
-      "Diciembre"
-    ]
-    const movieCardDate = `${movieDate.getDate()} de ${mesesDelAño[movieDate.getMonth()]} del ${movieDate.getFullYear()} `
+  
 
   if (!actionMovies || actionMovies.length === 0) {
     console.log("No hay datos de películas de acción disponibles");
