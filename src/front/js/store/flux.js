@@ -279,7 +279,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 
 					//
-					getActions().getSeelater()
+					getActions().getSeelaters()
 
 
 					return true;
@@ -290,7 +290,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			getSeelater: async () => {
+			getSeelaters: async () => {
 				const store = getStore();
 			  console.log (store.token);
 				const opts = {
@@ -315,8 +315,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  console.log(data)
 			  
 				  // Actualizar los comentarios en el estado global
-				  setStore({ seelater: data ["seelater"] });
-				  console.log(store.seelater);
+				  setStore({ seelaters: data ["seelaters"] });
+				  console.log(store.seelaters);
 				  return true;
 				} catch (error) {
 					console.error("Fatal error getting seelater", error);
