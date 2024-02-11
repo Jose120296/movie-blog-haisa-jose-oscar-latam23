@@ -2,7 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/home.css";
-import fondo from "./../../img/fondoCine.jpg";
+import fondo from "../../img/backgroundTodo.jpeg";
+
 import fotoWelcome from "./../../img/Welcome-rafiki.png";
 
 export const Home = () => {
@@ -13,7 +14,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="home-container d-flex justify-content-center align-items-center" style={{ fontFamily: "Agbalumo", backgroundColor: "rgb(8, 19, 36)" }}>
+    <div className="home-container vistaHome d-flex justify-content-center align-items-center" style={{ fontFamily: "Agbalumo", backgroundImage: `url(${fondo})`}}>
       <div className="col-md-6 border border-light bg-secondary" >
         <div className="container d-flex">
           <div className="container">

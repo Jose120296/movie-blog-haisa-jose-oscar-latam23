@@ -2,7 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "../../styles/home.css";
+import "../../styles/login.css";
+
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -27,16 +28,16 @@ export const Login = () => {
   }, []);
 
   return (
-    <div className="home-container d-flex justify-content-center align-items-center" style={{fontFamily: "Agbalumo"}}>
-      	<div className="col-md-6">
-        	<div className="container d-flex border border-light bg-secondary" style={{ borderRadius: "10px" }}>
-          		<div className="card-body text-center">
-            		<h1 className="mb-4">Please Login</h1>
-              		{store.token && store.token !== "" && store.token !== undefined ? (
-						<p>You are logged in with this token: {store.token}</p>
-              		) : (
-					<div className="mt-4">
-						<div className="form-group mb-2">
+    <div className="home-container d-flex justify-content-center align-items-center" >
+      	
+        <div className="container d-flex justify-content-center align-items-center bg-secondary" style={{ borderRadius: "10px", padding: "10px", width: "22rem", height: "25rem" }}>
+        	<div className="">
+           		<h1 className="mb-4">Login</h1>
+           		{store.token && store.token !== "" && store.token !== undefined ? (
+					<p>You are logged in with this token: {store.token}</p>
+           		) : (
+				<div className="mt-4">
+					<div className="form-group mb-2">
 						<input
 							type="text"
 							className="form-control"
@@ -44,8 +45,11 @@ export const Login = () => {
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 						/>
-						</div>
-						<div className="form-group">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
+							<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+						</svg>
+					</div>
+					<div className="form-group">
 						<input
 						type="password"
 						className="form-control"
@@ -53,25 +57,22 @@ export const Login = () => {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						/>
-						</div>
-						<button className="btn btn-danger btn-block mb-2 mt-2" onClick={handleClick}>
-						Login
-						</button>
-						<p><strong>Don't have an account?</strong></p>
-						<Link to="/signup">
-						<button className="btn btn-danger btn-block mb-2" onClick={handleSignupClick}>
-							Sign up
-						</button>
-						</Link>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-lock-fill" viewBox="0 0 16 16">
+  							<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+						</svg>
 					</div>
-            	)}
-		  		
-        	</div>
-			<div className="container">
-				<img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=2056&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="imagen" className="img-fluid"/>
-		  	</div>
-        </div>
-      </div>
+					<button className="btn btn-danger btn-block mb-2 mt-2" onClick={handleClick}>
+					Login
+					</button>
+					<p><strong>Don't have an account?</strong> <Link to="/signup"> Sign up  </Link></p>
+					
+				</div>
+           		)}
+	  		
+       		</div>
+        
+      	</div>
+
     </div>
   );
 };
