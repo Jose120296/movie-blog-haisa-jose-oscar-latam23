@@ -1,0 +1,10 @@
+.form-group{
+    display: flex;
+    align-items: baseline;
+
+}
+
+.home-container{
+    font-family: "Poppins", sans-serif;
+
+}

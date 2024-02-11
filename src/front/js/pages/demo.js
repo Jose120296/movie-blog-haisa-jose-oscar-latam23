@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate} from "react-router-dom";
 import "../../styles/demo.css";
 import { Favorites } from "../component/favorites";
-import	{ Seelaters }  from "../component/seelater";
+import	{ Seelaters }  from "../component/seelaters";
 
 export const Demo = () => {
 

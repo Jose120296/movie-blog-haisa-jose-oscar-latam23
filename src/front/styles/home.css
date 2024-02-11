@@ -174,3 +174,6 @@ body {
 }
 
 
+.vistaHome > background-image{
+  object-fit: cover; 
+}

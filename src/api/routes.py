@@ -278,7 +278,7 @@ def get_seelaters():
     seelaters_usuario = Seelater.query.filter_by(user_id=user_id).all()
     seelaters_serializados = [{"id": seelater.id, "movie": seelater.movie.serialize()} for seelater in seelaters_usuario]
 
-    return jsonify({'seelater': seelaters_serializados})
+    return jsonify({'seelaters': seelaters_serializados})
 
 @api.route('user/seelaters', methods=['GET'])
 @jwt_required()
@@ -286,8 +286,8 @@ def delete_seelater(movie_id):
     
 
     user_id = get_jwt_identity()
-    seelater_usuario = Seelater(movie_id= movie_id, user_id=user_id)
-    db.session.delete(seelater_usuario)
+    seelaters_usuario = Seelater(movie_id= movie_id, user_id=user_id)
+    db.session.delete(seelaters_usuario)
     db.session.commit()
 
     return jsonify({'message': 'Seelater eliminado correctamente'}), 201
