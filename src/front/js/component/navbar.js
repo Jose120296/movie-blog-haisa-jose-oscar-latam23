@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate, } from "react-router-dom";
 import { Context } from '../store/appContext';
+import logoNav from "./../../img/logoNav.png";
+
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
@@ -21,10 +23,10 @@ export const Navbar = () => {
 
   
   return (
-    <nav className="navbar navbar-dark bg-dark fixed-top">
+    <nav className="navbar navbar-dark fixed-top" style={{backgroundColor: "rgb(8, 19, 36)"}}>
       <div className="container-fluid">
         <Link to="/feed" className="navbar-brand mb-2 h1 text-white" style={{ borderRadius: "5px", fontFamily: "Bebas Neue" }}>
-          CINEVERSE
+          <img src={logoNav} alt="imagen" className="img-fluid" style={{width: "12rem"}}/>
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
