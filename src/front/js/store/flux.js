@@ -268,7 +268,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				try {
-					const resp = await fetch(`${store.API_URL}/api/movies/${movieId}/seelater`, opts);
+					const resp = await fetch(`${store.API_URL}/api/movies/${movieId}/seelaters`, opts);
 					
 					if (resp.status !== 201) {
 						const errorData = await resp.json();
@@ -302,11 +302,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			  
 				try {
-				  const resp = await fetch(`${store.API_URL}/api/user/seelater`, opts);
+				  const resp = await fetch(`${store.API_URL}/api/user/seelaters`, opts);
 			  
 				  if (resp.status !== 200) {
 					const errorData = await resp.json();
-					console.error("Error getting seelater:", errorData);
+					console.error("Error getting seelaters:", errorData);
 					alert("There has been some error");
 					return false;
 				  }
