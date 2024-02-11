@@ -67,7 +67,7 @@ export const Card = ({movie}) => {
                       <button className="btn btn-danger me-2" onClick={() =>{actions.addFavorite(movie.id)} }>
                         <i className="fa-solid fa-star"></i>
                       </button>
-                      <button className="btn btn-danger">
+                      <button className="btn btn-danger" onClick={() =>{actions.addseelater(movie.id)} }>
                         <i className="fa-solid fa-clock"></i>
                       </button>
                     </div>
