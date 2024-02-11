@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate} from "react-router-dom";
 import "../../styles/demo.css";
 import { Favorites } from "../component/favorites";
-import	{ Seelater }  from "../component/Seelater";
+import	{ Seelaters }  from "../component/seelater";
 
 export const Demo = () => {
 
@@ -55,7 +55,7 @@ export const Demo = () => {
 									<Favorites/>
 								</div>
 								<div className="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabIndex="0">
-									<Seelater/>
+									<Seelaters/>
 								</div>
 							</div>
 						</div>

@@ -259,7 +259,7 @@ def delete_favorites(movie_id):
     return jsonify({'message': 'Favorito eliminado correctamente'}), 201
 
 
-@api.route('/movies/<int:movie_id>/seelater', methods=['POST'])
+@api.route('/movies/<int:movie_id>/seelaters', methods=['POST'])
 @jwt_required()
 def add_seelater(movie_id):
 
@@ -270,17 +270,17 @@ def add_seelater(movie_id):
 
     return jsonify({'message': 'Ver luego fue añadido correctamente'}), 201
 
-@api.route('user/seelater', methods=['GET'])
+@api.route('user/seelaters', methods=['GET'])
 @jwt_required()
-def get_seelater():
+def get_seelaters():
     
     user_id = get_jwt_identity()
-    seelater_usuario = Seelater.query.filter_by(user_id=user_id).all()
-    seelater_serializados = [{"id": seelater.id, "movie": seelater.movie.serialize()} for seelaters in seelater_usuario]
+    seelaters_usuario = Seelater.query.filter_by(user_id=user_id).all()
+    seelaters_serializados = [{"id": seelater.id, "movie": seelater.movie.serialize()} for seelater in seelaters_usuario]
 
-    return jsonify({'seelater': seelater_serializados})
+    return jsonify({'seelater': seelaters_serializados})
 
-@api.route('user/seelater', methods=['GET'])
+@api.route('user/seelaters', methods=['GET'])
 @jwt_required()
 def delete_seelater(movie_id):
     
