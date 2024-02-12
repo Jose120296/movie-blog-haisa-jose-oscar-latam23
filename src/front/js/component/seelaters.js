@@ -14,7 +14,7 @@ export function Seelaters () {
         <h1>See later</h1>
         <div className="row flex-nowrap overflow-auto">
 
-          {store.seelaters.map((seelater, index) => (
+          {store.seelaters?.map((seelater, index) => (
             <div className= "seelatercard w-auto"  key={index}>
               <p>{seelater.movie.title}</p>
               <img
