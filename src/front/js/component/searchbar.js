@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Card from './Card';
-import ActionMovies from './ActionMovies';
-import ComedyMovies from './ComedyMovies';
-import DramaMovies from './DramaMovies';
+import { ComedyMovies } from "./comedyMovie";
+import { DramaMovies } from "./dramaMovie";
+import { ActionMovies } from "./actionMovie";
+import { Card } from "./card"
 
-function SearchBar() {
+
+
+function Searchbar() {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
@@ -42,13 +44,12 @@ function SearchBar() {
                 })}
             </div>
             <br />
-            <ActionMovies />
+            <ActionMovies/>
             <br />
-            <ComedyMovies />
+            <ComedyMovies/>
             <br />
-            <DramaMovies />
+            <DramaMovies/>
         </div>
     );
-}
+};
 
-export default SearchBar;

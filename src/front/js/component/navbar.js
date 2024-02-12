@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate, } from "react-router-dom";
 import { Context } from '../store/appContext';
 import logoNav from "./../../img/logoNav.png";
-
+import Searchbar from "./searchbar";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);

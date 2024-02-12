@@ -13,7 +13,7 @@ export const GetDramaMovies = () => {
   useEffect(() => {
     const fetchDramaMovies = async () => {
       try {
-        const response = await fetch(store.API_URL + "/api/movies");
+        const response = await fetch(store.API_URL + "api/movies");
         const data = await response.json();
         actions.setMovies(data);
         setDramaMovies(data.filter(movie => movie.genre.includes("Drama")));
