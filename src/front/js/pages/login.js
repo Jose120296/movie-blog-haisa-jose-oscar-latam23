@@ -64,7 +64,7 @@ export const Login = () => {
 					<button className="btn" onClick={handleClick}>
 					Login
 					</button>
-					<p><strong>Don't have an account?</strong> <Link to="/signup"> Sign up  </Link></p>
+					<p><strong>Don't have an account?</strong> <Link to="/signup" style={{color: "white", textDecoration: "none"}}> Sign up  </Link></p>
 					
 				</div>
            		)}

@@ -13,7 +13,7 @@ export const MovieInfo = () => {
   useEffect(() => {
     const fetchMovieInfo = async () => {
       try {
-        const response = await fetch(`${store.API_URL}api/movies/${id}`);
+        const response = await fetch(`${store.API_URL}/api/movies/${id}`);
         const data = await response.json();
         setMovieInfo(data);
       } catch (error) {

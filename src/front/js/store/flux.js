@@ -30,7 +30,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getMessage: async () => {
 				try{
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "api/hello")
+					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
@@ -68,7 +68,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				};
 				try {
-					const resp = await fetch (store.API_URL + 'api/user', infoNewUser)
+					const resp = await fetch (store.API_URL + '/api/user', infoNewUser)
 					if (resp.status !== 201) {
 						const errorData = await resp.json();
 						console.error("Error during signup:", errorData);
@@ -93,7 +93,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				}
 				try {
-					const resp = await fetch (store.API_URL + 'api/token', opts);
+					const resp = await fetch (store.API_URL + '/api/token', opts);
 					if (resp.status !== 200) {
 						const errorData = await resp.json();
 						console.error("Error during login:", errorData);
@@ -133,7 +133,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				try {
-					const resp = await fetch(`${store.API_URL}api/movies/${movieId}/comments`, opts);
+					const resp = await fetch(`${store.API_URL}/api/movies/${movieId}/comments`, opts);
 					
 					if (resp.status !== 201) {
 						const errorData = await resp.json();
@@ -164,7 +164,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			  
 				try {
-				  const resp = await fetch(`${store.API_URL}api/movies/${movieId}/comments`, opts);
+				  const resp = await fetch(`${store.API_URL}/api/movies/${movieId}/comments`, opts);
 			  
 				  if (resp.status !== 200) {
 					const errorData = await resp.json();
@@ -200,7 +200,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				try {
-					const resp = await fetch(`${store.API_URL}api/movies/${movieId}/favorites`, opts);
+					const resp = await fetch(`${store.API_URL}/api/movies/${movieId}/favorites`, opts);
 					
 					if (resp.status !== 201) {
 						const errorData = await resp.json();
@@ -232,7 +232,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			  
 				try {
-				  const resp = await fetch(`${store.API_URL}api/user/favorites`, opts);
+				  const resp = await fetch(`${store.API_URL}/api/user/favorites`, opts);
 			  
 				  if (resp.status !== 200) {
 					const errorData = await resp.json();
@@ -269,7 +269,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				try {
-					const resp = await fetch(`${store.API_URL}api/movies/${movieId}/seelaters`, opts);
+					const resp = await fetch(`${store.API_URL}/api/movies/${movieId}/seelaters`, opts);
 					
 					if (resp.status !== 201) {
 						const errorData = await resp.json();
@@ -303,7 +303,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			  
 				try {
-				  const resp = await fetch(`${store.API_URL}api/user/seelaters`, opts);
+				  const resp = await fetch(`${store.API_URL}/api/user/seelaters`, opts);
 			  
 				  if (resp.status !== 200) {
 					const errorData = await resp.json();
