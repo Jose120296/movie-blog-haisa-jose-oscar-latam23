@@ -8,3 +8,47 @@
     font-family: "Poppins", sans-serif;
 
 }
+
+.loginContainer{
+    width: 420px;
+    color: #fff
+}
+
+.loginContainer h1{
+    font-size: 36px;
+    text-align: center;
+}
+
+.form-group input{
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid ;
+    border-color: rgb(255, 255, 255, .2);
+    border-radius: 40px;
+
+}
+
+.form-group input::placeholder{
+    color: #fff;
+}
+
+.form-group svg{
+    position: relative;
+    right: 30px;
+    top: 10px;
+    transform: translateY(-50%);
+}
+
+
+
+.contenedor button{
+    width: 95%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    color: #333;
+}

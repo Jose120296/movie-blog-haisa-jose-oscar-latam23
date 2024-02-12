@@ -31,14 +31,14 @@ export const Login = () => {
     <div className="home-container d-flex justify-content-center align-items-center" >
       	
         <div className="container d-flex justify-content-center align-items-center bg-secondary" style={{ borderRadius: "10px", padding: "10px", width: "22rem", height: "25rem" }}>
-        	<div className="">
+        	<div className="loginContainer">
            		<h1 className="mb-4">Login</h1>
            		{store.token && store.token !== "" && store.token !== undefined ? (
 					<p>You are logged in with this token: {store.token}</p>
            		) : (
-				<div className="mt-4">
+				<div className="contenedor mt-4">
 					<div className="form-group mb-2">
-						<input
+						<input 
 							type="text"
 							className="form-control"
 							placeholder="Email"
@@ -61,7 +61,7 @@ export const Login = () => {
   							<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
 						</svg>
 					</div>
-					<button className="btn btn-danger btn-block mb-2 mt-2" onClick={handleClick}>
+					<button className="btn" onClick={handleClick}>
 					Login
 					</button>
 					<p><strong>Don't have an account?</strong> <Link to="/signup"> Sign up  </Link></p>
