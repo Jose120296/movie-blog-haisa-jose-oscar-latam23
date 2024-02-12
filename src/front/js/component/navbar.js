@@ -16,10 +16,7 @@ export const Navbar = () => {
 
  
 
-  function handleHomeclick () {
-    const navigate = useNavigate();
-    navigate("/feed");
-  };
+
 
   
   return (
