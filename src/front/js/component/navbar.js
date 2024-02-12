@@ -13,11 +13,6 @@ export const Navbar = () => {
     actions.logout();
     navigate('/');
   };
-
- 
-
-
-
   
   return (
     <nav className="navbar navbar-dark fixed-top" style={{backgroundColor: "rgb(8, 19, 36)"}}>
