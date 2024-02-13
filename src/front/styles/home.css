@@ -39,7 +39,6 @@ body {
 }
 
 .movieWelcome {
-  background-color: #dda13a;
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -47,7 +46,6 @@ body {
 
 .movieWelcome h1 {
   font-size: 48px;
-  color: #333;
   margin-bottom: 10px; /* Reducido el margen inferior */
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
@@ -60,7 +58,6 @@ body {
 
 .grid-left p {
   font-size: 26px;
-  color: #555;
   width: 50%;
   margin-bottom: 10px; 
   font-family: monospace;
@@ -89,7 +86,6 @@ body {
 .laterWelcome p {
   margin-left: 10px;
   font-size: 18px;
-  color: #555;
   margin-bottom: 4px; /* Eliminado el margen inferior */
   font-family: monospace;
 }
@@ -257,6 +253,10 @@ body {
   color: rgba(167, 153, 2, 0.941)
 }
 
+.movieWelcome{
+  margin-top: 70px;
+  width: 80%;
+}
 
 .vistaHome > background-image{
   object-fit: cover; 

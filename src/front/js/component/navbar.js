@@ -1,7 +1,7 @@
 import React, { useContext, useState , useEffect} from "react";
 import { Link, useNavigate, } from "react-router-dom";
 import { Context } from '../store/appContext';
-import logoNav from "./../../img/logoNav.png";
+import logoNav from "./../../img/logoRojo.png";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
