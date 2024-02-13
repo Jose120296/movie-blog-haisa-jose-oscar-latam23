@@ -102,7 +102,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					const data = await resp.json();
 					console.log("Token from the backend:", data.access_token);
-					sessionStorage.setItem("token", data.access_token);
+					localStorage.setItem("token", data.access_token);
 					setStore ({token: data.access_token});
 					return true;
 				} catch (error) {
@@ -110,8 +110,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				
 			},
+			setToken: (token) => {
+				setStore({token: token});
+			},
+
 			logout: () => {
-				sessionStorage.removeItem("token");
+				localStorage.removeItem("token");
 				console.log("login out");
 				setStore({token: null})
 			},
@@ -255,7 +259,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
+			deleteFavorite: async (favorite_id) => {
+				const store = getStore();
+				console.log ("me ejecuto")
+				const opts = {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${store.token}`
+					},
+					body: JSON.stringify("")
+				};
 
+				try {
+					const resp = await fetch(`${store.API_URL}/api/user/favorites/${favorite_id}`, opts);
+					
+					if (resp.status !== 201) {
+						const errorData = await resp.json();
+						console.error("Error deleting favorite:", errorData);
+
+						alert("There has been some error");
+						return false;
+					}
+				 getActions().getFavorites()
+
+				}catch (error) {
+					console.error("Fatal error getting seelater", error);
+					// Puedes agregar un alert o manejar el error de otra manera
+					alert("Error getting seelater. Please try again.");
+					return false;
+				}
+			},	
 			addSeelater: async (movieId) => {
 				const store = getStore();
 				console.log ("me ejecuto")
@@ -326,9 +360,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
+			deleteSeelater: async (seelater_id) => {
+				const store = getStore();
+				console.log ("me ejecuto")
+				const opts = {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${store.token}`
+					},
+					body: JSON.stringify("")
+				};
+
+				try {
+					const resp = await fetch(`${store.API_URL}/api/user/seelaters/${seelater_id}`, opts);
+					
+					if (resp.status !== 201) {
+						const errorData = await resp.json();
+						console.error("Error deleting seelater:", errorData);
+
+						alert("There has been some error");
+						return false;
+					}
+				 getActions().getSeelaters()
+
+				}catch (error) {
+					console.error("Fatal error getting seelater", error);
+					// Puedes agregar un alert o manejar el error de otra manera
+					alert("Error getting seelater. Please try again.");
+					return false;
+				}
+			},	
+			
 		},
-		
-	};
+	}
 };
 
 export default getState;
