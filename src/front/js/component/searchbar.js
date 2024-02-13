@@ -23,7 +23,7 @@ export function Searchbar() {
    }
 
     useEffect(() => {
-        //petitionGet();
+        petitionGet();
     }, []);
 
    return (
