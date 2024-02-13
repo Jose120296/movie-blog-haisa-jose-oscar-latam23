@@ -5,7 +5,8 @@ import { Favorites } from "../component/favorites";
 import	{ Seelaters }  from "../component/seelaters";
 import "../../styles/fondoabsoluto.css";
 export const Demo = () => {
-
+	
+	
 	return (
 		<div className="profile-page sidebar-collapse">
 		
@@ -21,16 +22,15 @@ export const Demo = () => {
 										<img src="https://api.multiavatar.com/Haisa.png" alt="Circle Image" className="img-raised rounded-circle img-fluid"/>
 									</div>
 									<div className="name">
-										<h3 className="title">username</h3>
+										<h3 className="title">
+											username
+										</h3>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div className="description text-center">
-						<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima iusto repellendus, vero ullam laborum beatae placeat eveniet dolore repellat animi, odio consequuntur molestiae blanditiis deserunt sit nostrum quibusdam accusantium facilis. </p>
-					</div>
 					<div className="container">
 						<div className="row">
 							<ul className="nav nav-tabs justify-content-center" id="myTab" role="tablist">

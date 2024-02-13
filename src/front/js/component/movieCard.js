@@ -14,9 +14,12 @@ export const MovieCard = () => {
   const { store, actions } = useContext(Context);
   return (
     <div className="text-left mt-5">
+      <div className="container d-flex justify-content-center align-items-center">
       <Link to="/allmovies" className="btn btn-danger">
-            View All Movies
-          </Link>
+        View All Movies
+      </Link>
+      </div>
+      
       <br/>
       <ActionMovies />
       <br/>
