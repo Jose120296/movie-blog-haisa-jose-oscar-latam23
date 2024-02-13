@@ -31,14 +31,12 @@ export const Navbar = () => {
          <Link className="nav-link" to="/feed" style={{ color: 'white', fontSize: '20px' }}>Home</Link>
        </div>
 
-      <button className="btn" style={{ backgroundColor: 'transparent', color: 'white', fontSize: '20px' }}>
-        <Link className="nav-link" to="/feed">About us</Link>
-      </button>
+      
 
       {store.token ? (
-        <div className="dropdown">
+        <div className="btn-group ms-2 ">
           <button
-            className="btn dropdown-toggle"
+            className="btn dropdown-toggle "
             style={{ backgroundColor: 'transparent', color: 'white' }}
             type="button"
             id="dropdownMenuButton"
@@ -59,11 +57,11 @@ export const Navbar = () => {
                 d="M2 11.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm.5-3a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11z"
               />
             </svg>
-            Dropdown
           </button>
-          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style={{ backgroundColor: 'transparent', color: 'white',  fontSize: '20px' }} >
+
             <li>
-              <Link className="dropdown-item" to="/demo">
+              <Link className="dropdown-item" to="/demo" style={{ backgroundColor: 'transparent', color: 'white', fontSize: '20px' }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -78,7 +76,12 @@ export const Navbar = () => {
               </Link>
             </li>
             <li>
-              <button className="dropdown-item" onClick={handleSignOut}>
+            <button className="dropdown-item" style={{ backgroundColor: 'transparent', color: 'white', fontSize: '20px' }}>
+              <Link className="nav-link" to="/feed">About us</Link>
+            </button>
+            </li>
+            <li>
+              <button className="dropdown-item" onClick={handleSignOut} style={{ backgroundColor: 'transparent', color: 'white',  fontSize: '20px' }}>
                 Cerrar sesión
               </button>
             </li>
