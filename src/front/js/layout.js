@@ -11,6 +11,8 @@ import { GetGenresMovies } from "./pages/allMoviesView";
 import { GetActionMovies } from "./pages/allActionsMovies";
 import { GetComedyMovies } from "./pages/allComedyMovies";
 import { GetDramaMovies } from "./pages/allDramaMovies";
+import { GetFamilyMovies } from "./pages/allFamilyMovie";
+import { GetAnimationMovies } from "./pages/allAnimationMovies";
 import { Feed } from "./pages/feed";
 import { MovieInfo } from "./pages/movieInfo"; 
 import injectContext from "./store/appContext";
@@ -40,6 +42,8 @@ const Layout = () => {
                         <Route element={<Feed />} path="/feed" />
                         <Route element={<GetGenresMovies />} path="/allmovies" />
                         <Route element={<GetActionMovies />} path="allactions" />
+                        <Route element={<GetAnimationMovies />} path="allanimation" />
+                        <Route element={<GetFamilyMovies />} path="allfamily" />
                         <Route element={<GetComedyMovies />} path="allcomedy" />
                         <Route element={<GetDramaMovies />} path="alldrama" />
                         <Route element={<MovieInfo />} path="/movies/:id" />
