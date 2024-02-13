@@ -8,41 +8,41 @@ import { Card } from "./card"
 
 
 
-function Searchbar() {
+export function Searchbar() {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
-    const petitionGet = () => {
-        axios.get('${process.env.BACKEND_URL}/api/hello')
-            setSearchTerm((response) => {
-                setSearchResults(response.data);
-            })
+   const petitionGet = () => {
+       axios.get('${process.env.BACKEND_URL}/api/hello')
+           setSearchTerm((response) => {
+               setSearchResults(response.data);
+           })
             .catch((error) => {
                 console.log(error);
             });
-    }
+   }
 
     useEffect(() => {
-        petitionGet();
+        //petitionGet();
     }, []);
 
-    return (
+   return (
         <div className="container text-left mt-5">
-            <div className="d-flex justify-content-between container fluid">
-                <h2>
-                    <strong>All movies</strong>
-                </h2>
+           <div className="d-flex justify-content-between container fluid">
+             <h2>
+               <strong>All movies</strong>
+              </h2>
                 <Link to={`/allmovies`} className="btn btn-danger">
                     View all movies
-                </Link>
+               </Link>
             </div>
             <div className="row flex-nowrap overflow-auto">
                 {store.movies.map((movie, index) => {
-                    return (
+                   return (
                         <Card movie={movie} key={index} />
                     )
-                })}
-            </div>
+               })}
+           </div>
             <br />
             <ActionMovies/>
             <br />

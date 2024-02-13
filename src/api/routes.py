@@ -245,18 +245,24 @@ def get_favorites():
     favoritos_serializados = [{"id": favorito.id, "movie": favorito.movie.serialize()} for favorito in favoritos_usuario]
 
     return jsonify({'favorites': favoritos_serializados})
-
-@api.route('user/favorites', methods=['GET'])
+@api.route('user/favorites/<int:favorites_id>', methods=['DELETE'])
 @jwt_required()
-def delete_favorites(movie_id):
+def delete_favorites(favorites_id):
     
 
     user_id = get_jwt_identity()
-    favoritos_usuario = Favorite(movie_id= movie_id, user_id=user_id)
-    db.session.delete(favoritos_usuario)
+    favorite =Favorite.query.get(favorites_id)
+    print(favorite)
+    if favorite is None:
+        return jsonify({'message': 'favorite no encontrado'}), 404
+
+    if favorite.user_id != user_id:
+        return jsonify({'message': 'No tienes permisos para eliminar este favorite'}), 403
+    
+    db.session.delete(favorite)
     db.session.commit()
 
-    return jsonify({'message': 'Favorito eliminado correctamente'}), 201
+    return jsonify({'message': 'favorite eliminado correctamente'}), 201
 
 
 @api.route('/movies/<int:movie_id>/seelaters', methods=['POST'])
@@ -280,13 +286,19 @@ def get_seelaters():
 
     return jsonify({'seelaters': seelaters_serializados})
 
-@api.route('user/seelaters', methods=['GET'])
+@api.route('user/seelaters/<int:seelater_id>', methods=['DELETE'])
 @jwt_required()
-def delete_seelater(movie_id):
+def delete_seelater(seelater_id):
     
 
     user_id = get_jwt_identity()
-    seelaters_usuario = Seelater(movie_id= movie_id, user_id=user_id)
+    seelaters_usuario = Seelater.query.get(seelater_id)
+    if seelaters_usuario is None:
+        return jsonify({'message': 'Seelater no encontrado'}), 404
+
+    if seelaters_usuario.user_id != user_id:
+        return jsonify({'message': 'No tienes permisos para eliminar este seelater'}), 403
+    
     db.session.delete(seelaters_usuario)
     db.session.commit()
 
