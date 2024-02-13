@@ -10,7 +10,6 @@ import { Card } from "./card"
 
 export const MovieCard = () => {
   const { store, actions } = useContext(Context);
-  const [movieRatings, setMovieRatings] = useState({});
 
   useEffect(() => {
     const fetchMovies = async () => {

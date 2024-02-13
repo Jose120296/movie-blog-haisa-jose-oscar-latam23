@@ -4,6 +4,7 @@ import { Context } from '../store/appContext';
 import logoNav from "./../../img/logoNav.png";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 
 export const Navbar = () => {
