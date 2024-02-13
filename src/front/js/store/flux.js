@@ -397,3 +397,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
+
+
+
+// Hola no vayan a dañar esto porfis
