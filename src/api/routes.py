@@ -178,7 +178,7 @@ def create_comment(movie_id):
     user_id = get_jwt_identity()
 
     # Obtener el usuario actual
-    user = User.query.get(user_id).first()
+    user = User.query.get(user_id)
 
     if not user:
         return jsonify({"message": "User not found"}), 404

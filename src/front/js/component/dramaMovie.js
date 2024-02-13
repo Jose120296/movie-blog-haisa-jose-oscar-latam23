@@ -32,12 +32,12 @@ export const DramaMovies = () => {
   }
 
   return (
-    <div className="container text-left mt-5">
-      <div className="d-flex justify-content-between container fluid">  
+    <div className="tittleRow container text-left mt-5">
+      <div className="d-flex justify-content-between container fluid mb-3">  
         <h2>
           <strong>Drama</strong>
         </h2>
-        <Link to={`/alldrama`} className="btn btn-danger">
+        <Link to={`/alldrama`} className="btn top btn-danger">
           View all drama movies
         </Link>
       </div>

@@ -32,11 +32,11 @@ export const ActionMovies = () => {
 
   return (
     <div className="container text-left mt-5">
-      <div className="d-flex justify-content-between container fluid">  
+      <div className="tittleRow d-flex justify-content-between container fluid mb-3">  
         <h2>
           <strong>Action</strong>
         </h2>
-        <Link to={`/allactions`} className="btn btn-danger">
+        <Link to={`/allactions`} className="btn top btn-danger">
           View all action movies
         </Link>
       </div>

@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { CommentSection } from "../component/commentSection";
 
-
 export const MovieInfo = () => {
   const { id } = useParams();
   const { store } = useContext(Context);
@@ -24,6 +23,31 @@ export const MovieInfo = () => {
     fetchMovieInfo();
   }, [id]);
 
+  // Función para formatear la fecha
+  const formatDate = (dateString) => {
+    const months = [
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre"
+    ];
+
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+
+    return `${day} de ${months[month]} del ${year}`;
+  };
+
   return (
     <div className="movie-info-container">
       {movieInfo ? (
@@ -37,38 +61,35 @@ export const MovieInfo = () => {
               />
             </div>
             <div className="col-md-8">
-            <div className="movie-details">
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <h2 className="mb-0"><strong>{movieInfo.title}</strong></h2>
-                <Link to="/feed" className="btn btn-danger">
-                  <i className="fa-solid fa-backward me-2"></i>
-                  Back
-                </Link>
+              <div className="movie-details">
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <h2 className="mb-0"><strong>{movieInfo.title}</strong></h2>
+                  <Link to="/feed" className="btn btn-danger">
+                    <i className="fa-solid fa-backward me-2"></i>
+                    Back
+                  </Link>
+                </div>
+                <p className="lead">{movieInfo.genre}</p>
+                <ul className="list-unstyled">
+                  <li className="mb-2">
+                    <strong>Title:</strong> {movieInfo.title}
+                  </li>
+                  <li className="mb-2">
+                    <strong>Genre:</strong> {movieInfo.genre}
+                  </li>
+                  <li className="mb-2">
+                    <strong>Length:</strong> {movieInfo.length}
+                  </li>
+                  <li className="mb-2">
+                    <strong>Release Date:</strong> {formatDate(movieInfo.release_date)}
+                  </li>
+                  <li>
+                    <strong>Description:</strong> {movieInfo.description}
+                  </li>
+                </ul>
               </div>
-              <p className="lead">{movieInfo.genre}</p>
-              <ul className="list-unstyled">
-                <li className="mb-2">
-                  <strong>Title:</strong> {movieInfo.title}
-                </li>
-                <li className="mb-2">
-                  <strong>Genre:</strong> {movieInfo.genre}
-                </li>
-                <li className="mb-2">
-                  <strong>Length:</strong> {movieInfo.length}
-                </li>
-                <li className="mb-2">
-                  <strong>Release Date:</strong> {movieInfo.release_date}
-                </li>
-                <li className="mb-2">
-                  <strong>Actors:</strong> {movieInfo.actors}
-                </li>
-                <li>
-                  <strong>Description:</strong> {movieInfo.description}
-                </li>
-              </ul>
+              <CommentSection movieId={id} />
             </div>
-            <CommentSection movieId={id} />
-          </div>
           </div>
         </>
       ) : (

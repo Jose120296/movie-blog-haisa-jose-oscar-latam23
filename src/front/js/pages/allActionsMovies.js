@@ -38,16 +38,19 @@ export const GetActionMovies = () => {
     return <div>No hay películas de acción disponibles</div>;
   }
 
+  
+
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
   const currentMovies = actionMovies.slice(indexOfFirstMovie, indexOfLastMovie);
 
   // Cambiar de página
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  
 
   return (
     <div className="container-fluid text-left mt-45" style={{ width: "90vw", marginTop: "7rem" }}>
-      <div className="d-flex justify-content-between">
+      <div className="tittleRow d-flex justify-content-between mb-3">
         <h2>
           <strong>Actions Movies</strong>
         </h2>
@@ -55,7 +58,7 @@ export const GetActionMovies = () => {
           View all movies
         </Link>
       </div>
-      <div className="row card-container">
+      <div className="xCard row card-container">
         {currentMovies.map((movie, index) => (
           <div
             className="col-md-4 mb-4"
@@ -80,11 +83,8 @@ export const GetActionMovies = () => {
                     <p className="card-text">
                       <strong>Genre:</strong> {movie.genre}
                     </p>
-                    <p className="card-text">
-                      <strong>Release Date:</strong> {movie.release_date}
-                    </p>
-                    <p className="card-text">
-                      <strong>Description:</strong> {movie.description}
+                    <p className="card-text horizontal">
+                        {movie.description}
                     </p>
                     <p className="card-text">
                       <strong>Length:</strong> {movie.length} min

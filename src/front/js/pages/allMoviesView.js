@@ -41,7 +41,7 @@ export const GetGenresMovies = () => {
 
   return (
     <div className="container-fluid text-left mt-45" style={{ width: "90vw", marginTop: "7rem" }}>
-      <div className="d-flex justify-content-between">
+      <div className="tittleRow d-flex justify-content-between mb-3">
         <h2>
           <strong>All movies</strong>
         </h2>
@@ -49,14 +49,8 @@ export const GetGenresMovies = () => {
           View all movies
         </Link>
       </div>
-      <div className="row card-container">
+      <div className="xCard row card-container">
         {store.movies.slice((currentPage - 1) * moviesPerPage, currentPage * moviesPerPage).map((movie, index) => {
-          const movieDate = new Date(movie.release_date);
-          const mesesDelAño = [
-            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-          ];
-          const movieCardDate = `${movieDate.getDate()} de ${mesesDelAño[movieDate.getMonth()]} del ${movieDate.getFullYear()}`;
           return (
             <div className="col-md-4 mb-4" style={{}} key={index}>
               <div className="card horizontal" style={{ width: "100%", backgroundColor: "#5576B8" }}>
@@ -77,10 +71,9 @@ export const GetGenresMovies = () => {
                       <p className="card-text">
                         <strong>Genre:</strong> {movie.genre}
                       </p>
-                      <p className="card-text">
-                        <strong>Release Date:</strong> {movieCardDate}
+                      <p className="card-text horizontal">
+                        {movie.description}
                       </p>
-                      <p className="card-text horizontal">{movie.description}</p>
                       <p className="card-text">
                         <strong>Length:</strong> {movie.length} min
                       </p>

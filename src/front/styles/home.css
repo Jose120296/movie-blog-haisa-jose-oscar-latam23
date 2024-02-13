@@ -38,6 +38,28 @@ body {
 
 }
 
+.btn-top {
+  background-color: #dc3545;
+  color: white; 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 5px; 
+  text-decoration: none; 
+  transition: background-color 0.3s ease; 
+}
+
+.btn-top:hover {
+  background-color: #c82333; 
+}
+
+.tittleRow {
+  margin-top: 2rem; 
+}
+
+.tittleRow h2 {
+  margin: 0; 
+}
+
 
 .wrapper {
   display: flex;
@@ -121,18 +143,24 @@ body {
 
 
 
-.movie-details h2 {
-  color: #333;
+.movie-info-container {
+  color: white; /* Cambia el color del texto a blanco */
+}
+
+.movie-details {
+  background-color: rgba(0, 0, 0, 0.7); /* Añade un fondo semi-transparente oscuro */
+  padding: 20px;
 }
 
 .movie-details ul {
-  list-style: none;
+  list-style-type: none; /* Quita los puntos de la lista */
   padding: 0;
 }
 
 .movie-details li {
-  margin-bottom: 10px;
+  margin-bottom: 10px; /* Ajusta el espaciado entre elementos de la lista */
 }
+
 
 .movie-info-container {
   padding-top: 56px; 
@@ -143,7 +171,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f0f0f0;
+  background-color:rgba(0, 0, 0, 0.7);
   padding: 10px;
   border-radius: 8px;
   margin-bottom: 10px;
@@ -177,3 +205,70 @@ body {
 .vistaHome > background-image{
   object-fit: cover; 
 }
+.tittleRow{
+  color: white;
+}
+
+
+.xCard {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    
+}
+.xCard:hover {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.xCard .card-img-top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.xCard .card-body {
+  padding: 1.5rem;
+}
+
+.xCard .card-title {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.xCard .card-text {
+  margin-bottom: 0.75rem;
+  font-size: medium;
+}
+
+.xCard .rating {
+  margin-bottom: 1rem;
+}
+
+.xCard .rating .star {
+  font-size: 1.5rem;
+  color: #f8f7f5;
+  cursor: pointer;
+}
+
+.xCard .rating .selected {
+  color: #ffc107;
+}
+
+.xCard .xBtn {
+  margin-top: auto;
+}
+
+.xCard .xBtn button {
+  margin-left: 0.5rem;
+}
+
+.card.horizontal{
+  max-height: 18 rem;
+}
+.card-text.horizontal{
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  max-width: 350px;
+  max-height: 100px;
+}
+

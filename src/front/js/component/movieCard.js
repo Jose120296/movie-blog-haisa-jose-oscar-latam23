@@ -39,11 +39,11 @@ export const MovieCard = () => {
 
   return (
     <div className="container text-left mt-5">
-      <div className="d-flex justify-content-between container fluid">  
+      <div className="tittleRow d-flex justify-content-between container fluid mb-3">  
         <h2>
           <strong>All movies</strong>
         </h2>
-        <Link to={`/allmovies`} className="btn btn-danger">
+        <Link to={`/allmovies`} className="btn top btn-danger">
           View all movies
         </Link>
       </div>

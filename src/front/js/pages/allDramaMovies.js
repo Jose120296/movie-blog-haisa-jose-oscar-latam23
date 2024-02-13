@@ -47,7 +47,7 @@ export const GetDramaMovies = () => {
 
   return (
     <div className="container-fluid text-left mt-45" style={{ width: "90vw", marginTop: "7rem" }}>
-      <div className="d-flex justify-content-between">
+      <div className="tittleRow d-flex justify-content-between mb-3">
         <h2>
           <strong>Drama Movies</strong>
         </h2>
@@ -55,14 +55,14 @@ export const GetDramaMovies = () => {
           View all movies
         </Link>
       </div>
-      <div className="row card-container">
+      <div className="xCard row card-container">
         {currentMovies.map((movie, index) => (
           <div
             className="col-md-4 mb-4"
             style={{}}
             key={index}
           >
-            <div className="card" style={{ width: "100%", backgroundColor: "#5576B8" }}>
+            <div className="card horizontal" style={{ width: "100%", backgroundColor: "#5576B8" }}>
               <div className="row no-gutters">
                 <div className="col">
                   <img
@@ -83,8 +83,8 @@ export const GetDramaMovies = () => {
                     <p className="card-text">
                       <strong>Release Date:</strong> {movie.release_date}
                     </p>
-                    <p className="card-text">
-                      <strong>Description:</strong> {movie.description}
+                    <p className="card-text horizontal">
+                        {movie.description}
                     </p>
                     <p className="card-text">
                       <strong>Length:</strong> {movie.length} min

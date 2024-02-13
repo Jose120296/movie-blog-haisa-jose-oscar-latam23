@@ -36,21 +36,6 @@ class Seelater(db.Model):
     user= db.relationship("User",back_populates="seelaters")
     movie= db.relationship("Movies",back_populates="seelaters")
 
-
-# class Parent(Base):
-#     __tablename__ = "parent_table"
-
-#     id: Mapped[int] = mapped_column(primary_key=True)
-#     children: Mapped[List["Child"]] = relationship(back_populates="parent")
-
-
-# class Child(Base):
-#     __tablename__ = "child_table"
-
-#     id: Mapped[int] = mapped_column(primary_key=True)
-#     parent_id: Mapped[int] = mapped_column(ForeignKey("parent_table.id"))
-#     parent: Mapped["Parent"] = relationship(back_populates="children")
-
 class Movies(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
@@ -85,7 +70,7 @@ class Movies(db.Model):
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'), nullable=False)
     user= db.relationship("User",back_populates="comments")
