@@ -30,7 +30,7 @@ export const Login = () => {
   return (
     <div className="home-container d-flex justify-content-center align-items-center" >
       	
-        <div className="container d-flex justify-content-center align-items-center bg-secondary" style={{ borderRadius: "10px", padding: "10px", width: "22rem", height: "25rem" }}>
+        <div className="contenedorLogin container d-flex justify-content-center align-items-center bg-secondary">
         	<div className="loginContainer">
            		<h1 className="mb-4">Login</h1>
            		{store.token && store.token !== "" && store.token !== undefined ? (

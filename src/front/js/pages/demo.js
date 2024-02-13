@@ -4,6 +4,7 @@ import "../../styles/demo.css";
 import { Favorites } from "../component/favorites";
 import	{ Seelaters }  from "../component/seelaters";
 
+
 export const Demo = () => {
 
 	return (

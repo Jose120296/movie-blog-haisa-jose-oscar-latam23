@@ -9,9 +9,11 @@
 
 }
 
-.loginContainer{
+.contenedorLogin{
     width: 420px;
-    color: #fff
+    color: #fff;
+    border-radius: 5%;
+    padding: 30px 40px;
 }
 
 .loginContainer h1{
